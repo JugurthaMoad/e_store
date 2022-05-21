@@ -1,5 +1,6 @@
 import NavBar from "./Components/navbar";
 import Header from "./Components/header";
+import BotNavBar from "./Components/botNavBar";
 import React, { Component, useState, useEffect } from "react";
 import { getCategorie } from "./services/data";
 import GenderContext from "./context/genderContext";
@@ -31,6 +32,7 @@ function App() {
         >
           <NavBar articlesInCart={5} listCategorie={listCategorie} />
           <Header listCategorie={listCategorie} />
+          <BotNavBar articlesInCart={5} />
         </CategorieContext.Provider>
       </GenderContext.Provider>
     </div>
