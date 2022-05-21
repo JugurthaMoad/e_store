@@ -1,4 +1,5 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
+import { getCategorie } from "../services/data";
 import {
   ProfilIcon,
   FavoriIncon,
@@ -7,11 +8,14 @@ import {
   CloseIcon,
 } from "./icons";
 import GenderBar from "./genderBar";
-const NavBar = ({ genders }) => {
+const NavBar = ({ genders, articlesInCart }) => {
   const [showMenu, setShowMenu] = useState(0);
   const hundleShowMenu = () => {
     console.log("clicked");
     setShowMenu(!showMenu);
+  };
+  const hundleGenderClick = (gender) => {
+    getCategorie(gender);
   };
   return (
     <>
@@ -27,6 +31,15 @@ const NavBar = ({ genders }) => {
             <FavoriIncon className="text-orange-500" />
             <ProfilIcon />
             <CartIcon />
+            <span
+              className={
+                articlesInCart > 0
+                  ? "relative bottom-4 block w-6 h-6 rounded-full text-center items-center bg-red-600"
+                  : "hidden"
+              }
+            >
+              {articlesInCart}
+            </span>
           </div>
         </div>
         <div
