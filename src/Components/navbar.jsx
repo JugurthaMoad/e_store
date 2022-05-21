@@ -1,4 +1,5 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect, useContext } from "react";
+import GenderContext from "../context/genderContext";
 import { getCategorie } from "../services/data";
 import {
   ProfilIcon,
@@ -8,14 +9,16 @@ import {
   CloseIcon,
 } from "./icons";
 import GenderBar from "./genderBar";
-const NavBar = ({ genders, articlesInCart }) => {
+const NavBar = ({ articlesInCart }) => {
   const [showMenu, setShowMenu] = useState(0);
+  const [listCategorie, setList] = useState([]);
+  const currentGender = useContext(GenderContext);
   const hundleShowMenu = () => {
     setShowMenu(!showMenu);
   };
-  const hundleGenderClick = (gender) => {
-    getCategorie(gender);
-  };
+  useEffect(() => {
+    setList(getCategorie(currentGender.name));
+  }, [currentGender.name]);
   return (
     <>
       <div>
@@ -47,14 +50,14 @@ const NavBar = ({ genders, articlesInCart }) => {
           <div className="bg-gray-400 w-5/6">
             <GenderBar />
             <ul className="w-full h-full flex flex-col items-center py-4 gap-y-2">
-              {genders.map((gender, index) => {
+              {listCategorie.map((cat, index) => {
                 return (
                   <li
                     key={index}
                     className="w-5/6 text-xl p-4 bg-slate-50
                   "
                   >
-                    {gender}
+                    {cat}
                   </li>
                 );
               })}

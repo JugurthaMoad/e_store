@@ -17,7 +17,7 @@ function App() {
           setCurrentGender: hundleCurrentGender,
         }}
       >
-        <NavBar genders={genders} articlesInCart={0} />
+        <NavBar articlesInCart={0} />
         <GenderBar />
       </GenderContext.Provider>
     </div>
