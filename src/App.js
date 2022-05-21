@@ -5,12 +5,15 @@ import React, { Component, useState, useEffect } from "react";
 import { getCategorie, getArticles } from "./services/data";
 import GenderContext from "./context/genderContext";
 import CategorieContext from "./context/CategorieContext";
+import CartContext from "./context/CartContext";
 import Articles from "./Components/articles";
 function App() {
   const [gender, setGender] = useState("Femme"); // by default, display categories for femme
   const [categorie, setCategorie] = useState(getCategorie(gender)[0]);
   const [listCategorie, setList] = useState(getCategorie(gender));
   const [listArticles, setArticles] = useState(getArticles(categorie, gender));
+  const [CartArticles, setCartArticles] = useState(2);
+
   console.log("list = ", listArticles);
   const hundleCurrentGender = (gender) => {
     setGender(gender);
@@ -35,10 +38,17 @@ function App() {
             setCurrentCategorie: setCategorie,
           }}
         >
-          <NavBar articlesInCart={0} listCategorie={listCategorie} />
-          <Header listCategorie={listCategorie} />
-          <Articles listArticles={listArticles} />
-          <BotNavBar articlesInCart={0} />
+          <CartContext.Provider
+            value={{
+              articlesInCart: CartArticles,
+              addArticlesCart: setCartArticles,
+            }}
+          >
+            <NavBar listCategorie={listCategorie} />
+            <Header listCategorie={listCategorie} />
+            <Articles listArticles={listArticles} />
+            <BotNavBar articlesInCart={5} />
+          </CartContext.Provider>
         </CategorieContext.Provider>
       </GenderContext.Provider>
     </div>

@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect, useContext } from "react";
 import GenderContext from "../context/genderContext";
 import CategorieContext from "../context/CategorieContext";
+import CartContext from "../context/CartContext";
 import { getCategorie } from "../services/data";
 import {
   ProfilIcon,
@@ -10,10 +11,11 @@ import {
   CloseIcon,
 } from "./icons";
 import GenderBar from "./genderBar";
-const NavBar = ({ listCategorie, articlesInCart }) => {
+const NavBar = ({ listCategorie }) => {
   const [showMenu, setShowMenu] = useState(0);
   const currentGender = useContext(GenderContext);
   const currentCategorie = useContext(CategorieContext);
+  const cart = useContext(CartContext);
   const hundleShowMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -33,12 +35,12 @@ const NavBar = ({ listCategorie, articlesInCart }) => {
             <CartIcon />
             <span
               className={
-                articlesInCart > 0
+                cart.articlesInCart > 0
                   ? "relative bottom-4 block w-6 h-6 rounded-full text-center items-center bg-red-600"
                   : "hidden"
               }
             >
-              {articlesInCart}
+              {cart.articlesInCart}
             </span>
           </div>
         </div>
