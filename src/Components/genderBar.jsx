@@ -20,7 +20,7 @@ const GenderBar = () => {
                 (index < genders.length - 1
                   ? " border-r-2 border-black"
                   : " border-0") +
-                (gen === currentGender.name ? "  underline decoration-4" : "")
+                (gen === currentGender.name ? "  text-orange-600" : "")
               }
             >
               {gen}

@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect, useContext } from "react";
 import GenderContext from "../context/genderContext";
+import CategorieContext from "../context/CategorieContext";
 import { getCategorie } from "../services/data";
 import {
   ProfilIcon,
@@ -13,12 +14,14 @@ const NavBar = ({ articlesInCart }) => {
   const [showMenu, setShowMenu] = useState(0);
   const [listCategorie, setList] = useState([]);
   const currentGender = useContext(GenderContext);
+  const currentCategorie = useContext(CategorieContext);
   const hundleShowMenu = () => {
     setShowMenu(!showMenu);
   };
   useEffect(() => {
     setList(getCategorie(currentGender.name));
   }, [currentGender.name]);
+  console.log("categorie = ", currentCategorie.name);
   return (
     <>
       <div>
@@ -54,8 +57,11 @@ const NavBar = ({ articlesInCart }) => {
                 return (
                   <li
                     key={index}
-                    className="w-5/6 text-xl p-4 bg-slate-50
-                  "
+                    onClick={() => currentCategorie.setCurrentCategorie(cat)}
+                    className={
+                      "w-5/6 text-xl p-4 bg-slate-50" +
+                      (cat === currentCategorie.name ? " text-orange-600" : "")
+                    }
                   >
                     {cat}
                   </li>
