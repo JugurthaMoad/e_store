@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect, useContext } from "react";
 import GenderContext from "../context/genderContext";
 import CategorieContext from "../context/CategorieContext";
 import CartContext from "../context/CartContext";
+import { Link } from "react-router-dom";
 import { getCategorie } from "../services/data";
 import {
   ProfilIcon,
@@ -65,7 +66,7 @@ const NavBar = ({ listCategorie }) => {
                       (cat === currentCategorie.name ? " text-orange-600" : "")
                     }
                   >
-                    {cat}
+                    <Link to="/test"> {cat} </Link>
                   </li>
                 );
               })}
