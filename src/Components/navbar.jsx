@@ -11,7 +11,6 @@ import GenderBar from "./genderBar";
 const NavBar = ({ genders, articlesInCart }) => {
   const [showMenu, setShowMenu] = useState(0);
   const hundleShowMenu = () => {
-    console.log("clicked");
     setShowMenu(!showMenu);
   };
   const hundleGenderClick = (gender) => {

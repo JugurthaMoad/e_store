@@ -1,31 +1,26 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect, useContext } from "react";
 import { getGenders } from "../services/data";
-const GenderBar = ({ gender, setGender }) => {
+import GenderContext from "../context/genderContext";
+const GenderBar = () => {
   const [genders, setGenders] = useState([]);
+  const currentGender = useContext(GenderContext);
   useEffect(() => {
     setGenders(getGenders());
   }, []);
-  const hundleClick = (gender) => {
-    console.log("gender clicked", gender);
-    setGender(gender);
-  };
-
   return (
     <div className="w-full">
       <ul className="w-full text-xl flex justify-between">
         {genders.map((gen, index) => {
-          console.log("map ", gender);
           return (
             <li
               key={index}
-              onClick={() => hundleClick(gen)}
+              onClick={() => currentGender.setCurrentGender(gen)}
               className={
-                "w-full bg-gray-300 text-center p-2 " +
+                "w-full bg-gray-300 text-center p-2" +
                 (index < genders.length - 1
-                  ? "border-r-2 border-black"
-                  : gen === gender
-                  ? "underline decoration-2"
-                  : "")
+                  ? " border-r-2 border-black"
+                  : " border-0") +
+                (gen === currentGender.name ? "  underline decoration-4" : "")
               }
             >
               {gen}

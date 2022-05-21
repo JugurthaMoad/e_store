@@ -6,10 +6,20 @@ import GenderContext from "./context/genderContext";
 function App() {
   const [genders, setGenders] = useState([]);
   const [gender, setGender] = useState("Femme"); // by default, display categories for femme
+  const hundleCurrentGender = (gender) => {
+    setGender(gender);
+  };
   return (
     <div>
-      <NavBar genders={genders} articlesInCart={0} />
-      <GenderBar gender={gender} setGender={setGender} />
+      <GenderContext.Provider
+        value={{
+          name: gender,
+          setCurrentGender: hundleCurrentGender,
+        }}
+      >
+        <NavBar genders={genders} articlesInCart={0} />
+        <GenderBar />
+      </GenderContext.Provider>
     </div>
   );
 }
