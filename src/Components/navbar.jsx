@@ -10,17 +10,13 @@ import {
   CloseIcon,
 } from "./icons";
 import GenderBar from "./genderBar";
-const NavBar = ({ articlesInCart }) => {
+const NavBar = ({ listCategorie, articlesInCart }) => {
   const [showMenu, setShowMenu] = useState(0);
-  const [listCategorie, setList] = useState([]);
   const currentGender = useContext(GenderContext);
   const currentCategorie = useContext(CategorieContext);
   const hundleShowMenu = () => {
     setShowMenu(!showMenu);
   };
-  useEffect(() => {
-    setList(getCategorie(currentGender.name));
-  }, [currentGender.name]);
   console.log("categorie = ", currentCategorie.name);
   return (
     <>
