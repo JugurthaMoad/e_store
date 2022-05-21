@@ -2,6 +2,7 @@ import NavBar from "./Components/navbar";
 import Header from "./Components/header";
 import BotNavBar from "./Components/botNavBar";
 import Test from "./Components/test";
+import Profile from "./Components/profile";
 import React, { Component, useState, useEffect } from "react";
 import { getCategorie, getArticles } from "./services/data";
 import GenderContext from "./context/genderContext";
@@ -9,7 +10,7 @@ import CategorieContext from "./context/CategorieContext";
 import CartContext from "./context/CartContext";
 import Articles from "./Components/articles";
 import { Routes, Route, Link } from "react-router-dom";
-function App() {
+function App(props) {
   const [gender, setGender] = useState("Femme"); // by default, display categories for femme
   const [categorie, setCategorie] = useState(getCategorie(gender)[0]);
   const [listCategorie, setList] = useState(getCategorie(gender));
@@ -58,7 +59,11 @@ function App() {
                   </>
                 }
               />
-              <Route path="/test" element={<Test />} />
+              <Route
+                path="/test"
+                element={<Test listCategorie={listCategorie} />}
+              />
+              <Route path="/profile" element={<Profile />} />
               <Route
                 path="*"
                 element={

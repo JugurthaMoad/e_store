@@ -1,12 +1,21 @@
-import React, { Component, useContext } from "react";
+import React, { Component, useContext, useEffect, useState } from "react";
 import { HomeIcon, CartIcon, ProfilIcon } from "./icons";
 import CartContext from "../context/CartContext";
-const BotNavBar = ({ articlesInCart }) => {
+import { NavLink, useLocation, useMatch } from "react-router-dom";
+const BotNavBar = ({ articlesInCart, ...props }) => {
   const cart = useContext(CartContext);
+  const location = useLocation();
+
+  console.log("location = ", location);
   return (
-    <div className="border-t-2 border-black grid grid-cols-3 items-center justify-center p-4 fixed bottom-0 w-full bg-white">
+    <div className=" grid grid-cols-3 items-center justify-center p-4 fixed bottom-0 w-full bg-black text-white">
       <div className="flex justify-center">
-        <HomeIcon />
+        <NavLink
+          to="/"
+          className={useMatch("/") ? "text-orange-600" : "text-white"}
+        >
+          <HomeIcon />
+        </NavLink>
       </div>
       <div className="flex justify-center">
         <CartIcon />
@@ -21,7 +30,12 @@ const BotNavBar = ({ articlesInCart }) => {
         </span>
       </div>
       <div className="flex justify-center">
-        <ProfilIcon />
+        <NavLink
+          to="/profile"
+          className={useMatch("/profile") ? "text-orange-600" : "text-white"}
+        >
+          <ProfilIcon />
+        </NavLink>
       </div>
     </div>
   );

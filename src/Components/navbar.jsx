@@ -10,7 +10,9 @@ import {
   CartIcon,
   MobilMenu,
   CloseIcon,
+  BackIcon,
 } from "./icons";
+import { useNavigate, useMatch } from "react-router-dom";
 import GenderBar from "./genderBar";
 const NavBar = ({ listCategorie }) => {
   const [showMenu, setShowMenu] = useState(0);
@@ -20,12 +22,19 @@ const NavBar = ({ listCategorie }) => {
   const hundleShowMenu = () => {
     setShowMenu(!showMenu);
   };
-
+  const navigate = useNavigate();
+  const hundleBack = () => {
+    navigate(-1);
+  };
   return (
     <>
       <div>
         <div className="w-full h-20 bg-black text-white px-2 py-0 grid grid-cols-3 items-center md:hidden">
-          <div>
+          <div className="flex items-center">
+            <BackIcon
+              click={hundleBack}
+              className={useMatch("/") ? "hidden" : " relative"}
+            />
             <MobilMenu click={hundleShowMenu} />
           </div>
           <div>
@@ -78,9 +87,7 @@ const NavBar = ({ listCategorie }) => {
           >
             <CloseIcon />
           </span>
-          <div className=" w-screen h-screen absolute top-0 -z-40 bg-black m-0 opacity-50">
-            Coucou
-          </div>
+          <div className=" w-screen h-screen absolute top-0 -z-40 bg-black m-0 opacity-50"></div>
         </div>
       </div>
     </>
