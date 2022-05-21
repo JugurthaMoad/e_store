@@ -17,7 +17,7 @@ const NavBar = ({ listCategorie, articlesInCart }) => {
   const hundleShowMenu = () => {
     setShowMenu(!showMenu);
   };
-  console.log("categorie = ", currentCategorie.name);
+
   return (
     <>
       <div>
@@ -44,7 +44,9 @@ const NavBar = ({ listCategorie, articlesInCart }) => {
           </div>
         </div>
         <div
-          className={showMenu ? "w-5/6 h-4/5 absolute top-0 flex" : "hidden"}
+          className={
+            showMenu ? "w-5/6 h-4/5 absolute top-0 flex z-40" : "hidden"
+          }
         >
           <div className="bg-gray-400 w-5/6">
             <GenderBar />
@@ -71,6 +73,9 @@ const NavBar = ({ listCategorie, articlesInCart }) => {
           >
             <CloseIcon />
           </span>
+          <div className=" w-screen h-screen absolute top-0 -z-40 bg-black m-0 opacity-50">
+            Coucou
+          </div>
         </div>
       </div>
     </>
