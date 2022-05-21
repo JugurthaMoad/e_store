@@ -3,6 +3,7 @@ import Header from "./Components/header";
 import BotNavBar from "./Components/botNavBar";
 import Test from "./Components/test";
 import Profile from "./Components/profile";
+import ArticleDescription from "./Components/articleDescription";
 import React, { Component, useState, useEffect } from "react";
 import { getCategorie, getArticles } from "./services/data";
 import GenderContext from "./context/genderContext";
@@ -15,16 +16,16 @@ function App(props) {
   const [categorie, setCategorie] = useState(getCategorie(gender)[0]);
   const [listCategorie, setList] = useState(getCategorie(gender));
   const [listArticles, setArticles] = useState(getArticles(categorie, gender));
-  const [CartArticles, setCartArticles] = useState(4);
-
-  console.log("list = ", listArticles);
+  const [CartArticles, setCartArticles] = useState(0);
   const hundleCurrentGender = (gender) => {
     setGender(gender);
     setCategorie(getCategorie(gender)[0]);
     setList(getCategorie(gender));
   };
+  const hundleCartArticles = () => {
+    setCartArticles(CartArticles + 1);
+  };
   useEffect(() => {
-    console.log("useEffet to see");
     setArticles(getArticles(categorie, gender));
   }, [categorie, gender]);
   return (
@@ -44,7 +45,7 @@ function App(props) {
           <CartContext.Provider
             value={{
               articlesInCart: CartArticles,
-              addArticlesCart: setCartArticles,
+              addArticlesCart: hundleCartArticles,
             }}
           >
             <Routes>
@@ -61,9 +62,18 @@ function App(props) {
               />
               <Route
                 path="/test"
-                element={<Test listCategorie={listCategorie} />}
+                element={
+                  <Test
+                    listCategorie={listCategorie}
+                    listArticles={listArticles}
+                  />
+                }
               />
               <Route path="/profile" element={<Profile />} />
+              <Route
+                path="/article/:id"
+                element={<ArticleDescription listCategorie={listCategorie} />}
+              />
               <Route
                 path="*"
                 element={

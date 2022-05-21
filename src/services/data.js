@@ -91,6 +91,11 @@ export const getArticles = (cat, gen) => {
     (article) => article.categorie === cat && article.gender === gen
   );
 };
+
+export const getArticleById = (id) => {
+  console.log("id = ", typeof id);
+  return articles.find((article) => article.id == id);
+};
 const categories = [
   {
     name: "Femme",
