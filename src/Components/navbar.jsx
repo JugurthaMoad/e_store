@@ -30,7 +30,6 @@ const NavBar = ({ listCategorie, articlesInCart }) => {
           </div>
           <div className="flex justify-end">
             <FavoriIncon className="text-orange-500" />
-            <ProfilIcon />
             <CartIcon />
             <span
               className={
@@ -55,7 +54,10 @@ const NavBar = ({ listCategorie, articlesInCart }) => {
                 return (
                   <li
                     key={index}
-                    onClick={() => currentCategorie.setCurrentCategorie(cat)}
+                    onClick={() => {
+                      currentCategorie.setCurrentCategorie(cat);
+                      hundleShowMenu();
+                    }}
                     className={
                       "w-5/6 text-xl p-4 bg-slate-50" +
                       (cat === currentCategorie.name ? " text-orange-600" : "")

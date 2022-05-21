@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { HomeIcon, CartIcon, ProfilIcon } from "./icons";
 const BotNavBar = ({ articlesInCart }) => {
   return (
-    <div className="border-t-2 border-black grid grid-cols-3 items-center justify-center p-4 absolute bottom-0 w-full">
+    <div className="border-t-2 border-black grid grid-cols-3 items-center justify-center p-4 fixed bottom-0 w-full bg-white">
       <div className="flex justify-center">
         <HomeIcon />
       </div>
