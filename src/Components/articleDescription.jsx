@@ -23,7 +23,7 @@ const ArticleDescription = ({ listCategorie }) => {
       <span
         onClick={() => {
           cart.addArticlesCart();
-          cart.addItems(id);
+          cart.addItems(article);
           navigate(-1);
         }}
         className="w-screen bg-black block text-white p-4 font-bold text-center absolute bottom-0"

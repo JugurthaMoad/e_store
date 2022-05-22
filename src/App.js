@@ -16,9 +16,16 @@ function App(props) {
   const [gender, setGender] = useState("Femme"); // by default, display categories for femme
   const [categorie, setCategorie] = useState(getCategorie(gender)[0]);
   const [listCategorie, setList] = useState(getCategorie(gender));
+  // liste des articles
   const [listArticles, setArticles] = useState(getArticles(categorie, gender));
+  // nombre elements dans la panier
   const [CartArticles, setCartArticles] = useState(0);
+  // les elements dans le panier
   const [itemsInCart, setItems] = useState([]);
+  let tab = itemsInCart;
+  let articles = [];
+  // element whit repetition
+  const [elementInCart, setElement] = useState([]);
   const hundleCurrentGender = (gender) => {
     setGender(gender);
     setCategorie(getCategorie(gender)[0]);
@@ -27,10 +34,33 @@ function App(props) {
   const hundleCartArticles = () => {
     setCartArticles(CartArticles + 1);
   };
+
+  const fillCart = () => {
+    let article = {};
+    let o = 0;
+    let first = tab[0];
+    if (tab.length > 0) {
+      tab.forEach((el) => {
+        if (el.id === first.id) {
+          o++;
+        }
+      });
+      tab = tab.filter((el) => el.id !== first.id);
+
+      article.rep = o;
+      article.item = first;
+      articles.push(article);
+      fillCart();
+    }
+    setElement(articles);
+    console.log("elementInCart = ", elementInCart);
+  };
+
   const hundleItems = (it) => {
     let item = itemsInCart;
     item.push(it);
     setItems(item);
+    fillCart();
   };
   useEffect(() => {
     setArticles(getArticles(categorie, gender));
@@ -55,6 +85,7 @@ function App(props) {
               items: itemsInCart,
               addArticlesCart: hundleCartArticles,
               addItems: hundleItems,
+              elements: elementInCart,
             }}
           >
             <Routes>
@@ -106,3 +137,33 @@ function App(props) {
 }
 
 export default App;
+
+/*
+
+let a = [1, 4, 1, 3, 2];
+let tab = a.sort();
+let element = []; // va contenir les element
+
+const test = () => {
+  let o = 0;
+  let obj = {};
+  let first = tab[0]; // 1er element
+  if (tab.length > 0) {
+    tab.forEach((el) => {
+      console.log("el = ", el);
+      if (el === first) {
+        o++;
+        console.log("o = ", o);
+      }
+    });
+    tab = tab.filter((el) => el !== first);
+    obj.rep = o;
+    obj.item = first;
+    element.push(obj);
+    test();
+  }
+};
+
+test();
+console.log("element = ", element);
+*/
