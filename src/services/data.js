@@ -2,7 +2,7 @@ import image from "../images/fond.jpg";
 const genders = ["Femme", "Homme", "Enfant"];
 const articles = [
   {
-    id: 1,
+    id: "1",
     name: "GGGGGg",
     prix: 19,
     categorie: "Robes",
@@ -10,7 +10,7 @@ const articles = [
     image: image,
   },
   {
-    id: 2,
+    id: "2",
     name: "GGGGGg",
     prix: 45,
     categorie: "Sacs",
@@ -18,7 +18,7 @@ const articles = [
     image: image,
   },
   {
-    id: 3,
+    id: "3",
     name: "GGGGGg",
     prix: 19,
     categorie: "Robes",
@@ -26,7 +26,7 @@ const articles = [
     image: image,
   },
   {
-    id: 4,
+    id: "4",
     name: "GGGGGg",
     prix: 19,
     categorie: "Robes",
@@ -34,7 +34,7 @@ const articles = [
     image: image,
   },
   {
-    id: 5,
+    id: "5",
     name: "dfgdfg",
     prix: 19,
     categorie: "Vestes",
@@ -42,7 +42,7 @@ const articles = [
     image: image,
   },
   {
-    id: 6,
+    id: "6",
     name: "GGGGGg",
     prix: 19,
     categorie: "Sacs",
@@ -50,7 +50,7 @@ const articles = [
     image: image,
   },
   {
-    id: 7,
+    id: "7",
     name: "GGGGGg",
     prix: 19,
     categorie: "Robes",
@@ -58,23 +58,23 @@ const articles = [
     image: image,
   },
   {
-    id: 8,
+    id: "8",
     name: "GGGGGg",
     prix: 19,
     categorie: "Robes",
     image: image,
   },
   {
-    id: 9,
+    id: "9",
     name: "GGGGGg",
     prix: 19,
     categorie: "Robes",
     image: image,
   },
   {
-    id: 10,
+    id: "10",
     name: "GGGGGg",
-    prix: 19,
+    prix: "19",
     categorie: "Vestes",
     gender: "Homme",
     image: image,

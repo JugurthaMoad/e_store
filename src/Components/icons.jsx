@@ -153,3 +153,23 @@ export const BackIcon = ({ click, ...props }) => {
     </svg>
   );
 };
+
+export const CheckedIcon = ({ ...props }) => {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      role="img"
+      width="3em"
+      height="2em"
+      preserveAspectRatio="xMidYMid meet"
+      viewBox="0 0 32 32"
+    >
+      <path
+        fill="currentColor"
+        d="M16 8h14v2H16zM6 10.59L3.41 8L2 9.41l4 4l8-8L12.59 4L6 10.59zM16 22h14v2H16zM6 24.59L3.41 22L2 23.41l4 4l8-8L12.59 18L6 24.59z"
+      />
+    </svg>
+  );
+};
