@@ -1,5 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
+import CartContext from "../context/CartContext";
 const Item = ({ article }) => {
+  const { deleteItem } = useContext(CartContext);
   return (
     <div className="w-full grid grid-cols-2 text-black bg-gray-200">
       <img src={article.item.image} />
@@ -11,6 +13,15 @@ const Item = ({ article }) => {
         <span className="block w-full border-2 border-black p-2">
           {article.item.name}
           rep = {article.rep}
+        </span>
+        <span
+          onClick={() => {
+            console.log("clicer");
+            deleteItem(article.item);
+          }}
+          className="block text-red-800 text-xl font-bold"
+        >
+          X
         </span>
       </div>
     </div>

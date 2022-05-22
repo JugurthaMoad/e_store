@@ -62,6 +62,19 @@ function App(props) {
     setItems(item);
     fillCart();
   };
+
+  const hundleDelete = (it) => {
+    console.log("it = ", it);
+    let item = itemsInCart;
+    console.log("item = ", item);
+    let index = item.indexOf(it);
+    console.log("index = ", index);
+    item.splice(index, 1);
+    console.log("iem after ", item);
+    setCartArticles(CartArticles - 1);
+    setItems(item);
+    fillCart();
+  };
   useEffect(() => {
     setArticles(getArticles(categorie, gender));
   }, [categorie, gender]);
@@ -85,6 +98,7 @@ function App(props) {
               items: itemsInCart,
               addArticlesCart: hundleCartArticles,
               addItems: hundleItems,
+              deleteItem: hundleDelete,
               elements: elementInCart,
             }}
           >
