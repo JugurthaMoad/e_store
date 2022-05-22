@@ -4,6 +4,7 @@ import BotNavBar from "./Components/botNavBar";
 import Test from "./Components/test";
 import Profile from "./Components/profile";
 import ArticleDescription from "./Components/articleDescription";
+import Cart from "./Components/cart";
 import React, { Component, useState, useEffect } from "react";
 import { getCategorie, getArticles } from "./services/data";
 import GenderContext from "./context/genderContext";
@@ -17,6 +18,7 @@ function App(props) {
   const [listCategorie, setList] = useState(getCategorie(gender));
   const [listArticles, setArticles] = useState(getArticles(categorie, gender));
   const [CartArticles, setCartArticles] = useState(0);
+  const [itemsInCart, setItems] = useState([]);
   const hundleCurrentGender = (gender) => {
     setGender(gender);
     setCategorie(getCategorie(gender)[0]);
@@ -24,6 +26,11 @@ function App(props) {
   };
   const hundleCartArticles = () => {
     setCartArticles(CartArticles + 1);
+  };
+  const hundleItems = (it) => {
+    let item = itemsInCart;
+    item.push(it);
+    setItems(item);
   };
   useEffect(() => {
     setArticles(getArticles(categorie, gender));
@@ -45,7 +52,9 @@ function App(props) {
           <CartContext.Provider
             value={{
               articlesInCart: CartArticles,
+              items: itemsInCart,
               addArticlesCart: hundleCartArticles,
+              addItems: hundleItems,
             }}
           >
             <Routes>
@@ -70,6 +79,7 @@ function App(props) {
                 }
               />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/cart" element={<Cart />} />
               <Route
                 path="/article/:id"
                 element={<ArticleDescription listCategorie={listCategorie} />}

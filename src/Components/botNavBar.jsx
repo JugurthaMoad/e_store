@@ -6,7 +6,6 @@ const BotNavBar = ({ articlesInCart, ...props }) => {
   const cart = useContext(CartContext);
   const location = useLocation();
 
-  console.log("location = ", location);
   return (
     <div className=" grid grid-cols-3 items-center justify-center p-4 fixed bottom-0 w-full bg-black text-white">
       <div className="flex justify-center">
@@ -18,7 +17,13 @@ const BotNavBar = ({ articlesInCart, ...props }) => {
         </NavLink>
       </div>
       <div className="flex justify-center">
-        <CartIcon />
+        <NavLink
+          to="/cart"
+          className={useMatch("/cart") ? "text-orange-600" : "text-white"}
+        >
+          <CartIcon />
+        </NavLink>
+
         <span
           className={
             cart.articlesInCart > 0

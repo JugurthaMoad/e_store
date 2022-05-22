@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect, useContext } from "react";
 import GenderContext from "../context/genderContext";
 import CategorieContext from "../context/CategorieContext";
 import CartContext from "../context/CartContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useMatch } from "react-router-dom";
 import { getCategorie } from "../services/data";
 import {
   ProfilIcon,
@@ -12,7 +12,7 @@ import {
   CloseIcon,
   BackIcon,
 } from "./icons";
-import { useNavigate, useMatch } from "react-router-dom";
+
 import GenderBar from "./genderBar";
 const NavBar = ({ listCategorie }) => {
   const [showMenu, setShowMenu] = useState(0);
@@ -26,6 +26,10 @@ const NavBar = ({ listCategorie }) => {
   const hundleBack = () => {
     navigate(-1);
   };
+  const hundleCart = () => {
+    console.log("Cart");
+    navigate("/cart");
+  };
   return (
     <>
       <div>
@@ -38,11 +42,18 @@ const NavBar = ({ listCategorie }) => {
             <MobilMenu click={hundleShowMenu} />
           </div>
           <div>
-            <span className="block text-2xl font-semibold uppercase">Logo</span>
+            <span
+              onClick={() => {
+                navigate("/");
+              }}
+              className="block text-2xl font-semibold uppercase"
+            >
+              Logo
+            </span>
           </div>
           <div className="flex justify-end">
             <FavoriIncon className="text-orange-500" />
-            <CartIcon />
+            <CartIcon click={hundleCart} />
             <span
               className={
                 cart.articlesInCart > 0
