@@ -8,21 +8,19 @@ import { useNavigate } from "react-router-dom";
 const Cart = ({ listArticles }) => {
   let navigate = useNavigate();
   let cart = useContext(CartContext);
-  // problem in artItems
-  const { items } = cart;
   const { elements } = cart;
-  console.log("elements = ", elements);
   const hundleBack = () => {
     navigate("/");
   };
-
-  /*
-  useEffect(() => {
-    fillCart();
-    setItems(articles);
-    console.log("item = ", itemsCart);
-  }, [tab]);
-*/
+  const renderItems = (elements) => {
+    if (elements.length === 0) {
+      return <div>Pas d'article dans le panier</div>;
+    } else {
+      return elements.map((item, index) => {
+        return <Item key={index} article={item} />;
+      });
+    }
+  };
   return (
     <div>
       <div className="w-screen h-18 bg-black text-white p-4 grid grid-cols-3 items-center">
@@ -37,10 +35,7 @@ const Cart = ({ listArticles }) => {
       <div className="text-white self-center">Mon Panier</div>
 
       <div className="w-screen grid grid-cols-1 gap-4 text-black items-center justify-items-center pb-24">
-        {elements.map((item, index) => {
-          console.log("pas de blep");
-          return <Item key={index} article={item} />;
-        })}
+        {renderItems(elements)}
       </div>
 
       <BotNavBar />

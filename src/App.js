@@ -53,7 +53,6 @@ function App(props) {
       fillCart();
     }
     setElement(articles);
-    console.log("elementInCart = ", elementInCart);
   };
 
   const hundleItems = (it) => {
@@ -64,13 +63,9 @@ function App(props) {
   };
 
   const hundleDelete = (it) => {
-    console.log("it = ", it);
     let item = itemsInCart;
-    console.log("item = ", item);
     let index = item.indexOf(it);
-    console.log("index = ", index);
     item.splice(index, 1);
-    console.log("iem after ", item);
     setCartArticles(CartArticles - 1);
     setItems(item);
     fillCart();
@@ -151,33 +146,3 @@ function App(props) {
 }
 
 export default App;
-
-/*
-
-let a = [1, 4, 1, 3, 2];
-let tab = a.sort();
-let element = []; // va contenir les element
-
-const test = () => {
-  let o = 0;
-  let obj = {};
-  let first = tab[0]; // 1er element
-  if (tab.length > 0) {
-    tab.forEach((el) => {
-      console.log("el = ", el);
-      if (el === first) {
-        o++;
-        console.log("o = ", o);
-      }
-    });
-    tab = tab.filter((el) => el !== first);
-    obj.rep = o;
-    obj.item = first;
-    element.push(obj);
-    test();
-  }
-};
-
-test();
-console.log("element = ", element);
-*/

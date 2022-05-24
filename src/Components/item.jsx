@@ -16,7 +16,6 @@ const Item = ({ article }) => {
         </span>
         <span
           onClick={() => {
-            console.log("clicer");
             deleteItem(article.item);
           }}
           className="block text-red-800 text-xl font-bold"

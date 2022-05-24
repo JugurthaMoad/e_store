@@ -52,7 +52,7 @@ const NavBar = ({ listCategorie }) => {
             </span>
           </div>
           <div className="flex justify-end">
-            <FavoriIncon className="text-orange-500" />
+            <FavoriIncon />
             <CartIcon click={hundleCart} />
             <span
               className={
