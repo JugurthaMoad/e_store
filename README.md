@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+<h2> E-Store with ReactJS </h2> 
+<h3>Screen Shots :</h3>
+<div>
+<img  width="200" src="https://user-images.githubusercontent.com/96316074/170107450-cef212ac-98b5-47a3-b556-2ab9e39cb665.png"/> <img width="200" src="https://user-images.githubusercontent.com/96316074/170107463-9500fb4e-4314-4f12-a293-6bd184f747a7.png"/> <img width="200" src="https://user-images.githubusercontent.com/96316074/170107471-5211ff33-4cdc-4b95-9496-dc1828fb03bd.png"/>
+</div>
+<h3>Table of Contents: </h3>
+<ul>
+  <li>Description of the project </li>
+  <li>What i did</li>
+  <li>What I learned</li>
+  <li>Remains to be done</li>
+  <li>What I'm learning </li>
+  <li>Run the App</li>
+  </ul>
+  
+  <hr/>
+  
+  <h3>Description of the project :</h3>
+  <p>This project is about creating a responsive E-Sotre web application with the use of :
+  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![My Skills](https://skills.thijs.gg/icons?i=git,js,react,tailwind&theme=light)](https://skills.thijs.gg) 
+  <hr width="50%"/>
+  
+  <h3>What I did : </h3>
+  I started by the "Mobile first design" approach to develop this web application and focus on "Core Concepts" of ReactJS. I used a fake backEnd service realised in JavaScript. 
+  <br/>
+  <hr width="50%"/>
+  <h3>What I learned : </h3>
+  This project allowed me to learn ReactJS Hooks such as "UseContext" to pass Data to Components without Redux, and some cool principles such as " Conditional Rendering" to hide or show elements, "Lifting the state up" to synchronize the adding and removing articles in the shoping cart, also i learned how to combine Components principle and SVG's to create a reusible icons and the use of the spread operator to copy props :sunglasses::sunglasses:. I also learned to use react-router-dom for the navigation, <span>and <img src="https://skills.thijs.gg/icons?i=figma,tailwind&theme=light"/> for the desing part.</span>
+  
+ <hr width="50%"/>
+ <h3>Remains to be done :sweat_smile: : </h3>
+ <ul>
+  <li>
+    Profil page 
+  </li>
+  <li>
+    Finish the shoping cart design 
+  </li>
+  <li>
+    Add the LogIn, LogOut pages
+  </li>
+  <li>
+    Finish the design for medium and larger screen 
+  </li>
+  </ul>
 
-## Available Scripts
+<hr width="50%"/>
+<h3>What I'm learning : </h3>
+<ul>
+  <li>
+    NodeJs to have a real backEnd service
+  </li>
+  <li>
+    React Native to have mobile version.
+  </li>
+  </ul>
+<hr width="50%"/>
+<h3>Run the App: </h3>
+<ul>
+  <li>
+    npm start
+  </li>
+  <li>
+    Open http://localhost:3000 to view it in your browser.
+  </li>
+  </ul>
+ <br />
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
