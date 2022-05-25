@@ -89,7 +89,6 @@ export const MobilMenu = ({ click, ...props }) => {
 export const CloseIcon = ({ click, ...props }) => {
   return (
     <svg
-      {...props}
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       role="img"
@@ -98,6 +97,7 @@ export const CloseIcon = ({ click, ...props }) => {
       onClick={click}
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 1024 1024"
+      {...props}
     >
       <path
         fill="currentColor"

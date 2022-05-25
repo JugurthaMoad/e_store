@@ -8,6 +8,7 @@ const articles = [
     categorie: "Robes",
     gender: "Femme",
     image: image,
+    tailles: ["S", "M", "L", "XL"],
   },
   {
     id: "2",
@@ -16,6 +17,7 @@ const articles = [
     categorie: "Sacs",
     gender: "Homme",
     image: image,
+    tailles: ["S", "M", "XL"],
   },
   {
     id: "3",
@@ -24,6 +26,7 @@ const articles = [
     categorie: "Robes",
     gender: "Femme",
     image: image,
+    tailles: ["S", "M", "L"],
   },
   {
     id: "4",
@@ -32,6 +35,7 @@ const articles = [
     categorie: "Robes",
     gender: "Femme",
     image: image,
+    tailles: ["S", "M", "L", "XL"],
   },
   {
     id: "5",
@@ -40,6 +44,7 @@ const articles = [
     categorie: "Vestes",
     gender: "Femme",
     image: image,
+    tailles: ["S", "M", "L", "XL"],
   },
   {
     id: "6",
@@ -48,6 +53,7 @@ const articles = [
     categorie: "Sacs",
     gender: "Femme",
     image: image,
+    tailles: ["S", "M", "XL"],
   },
   {
     id: "7",
@@ -56,6 +62,7 @@ const articles = [
     categorie: "Robes",
     gender: "Femme",
     image: image,
+    tailles: ["S", "M", "L", "XL"],
   },
   {
     id: "8",
@@ -63,6 +70,7 @@ const articles = [
     prix: 19,
     categorie: "Robes",
     image: image,
+    tailles: ["S", "M", "L", "XL"],
   },
   {
     id: "9",
@@ -70,6 +78,7 @@ const articles = [
     prix: 19,
     categorie: "Robes",
     image: image,
+    tailles: ["S", "M", "L", "XL"],
   },
   {
     id: "10",
@@ -78,6 +87,7 @@ const articles = [
     categorie: "Vestes",
     gender: "Homme",
     image: image,
+    tailles: ["S", "M", "L", "XL"],
   },
 ];
 // pour le menu mobil
