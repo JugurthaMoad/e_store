@@ -119,10 +119,7 @@ function App(props) {
                 }
               />
               <Route path="/profile" element={<Profile />} />
-              <Route
-                path="/cart"
-                element={<Cart listArticles={listArticles} />}
-              />
+              <Route path="/cart" element={<Cart />} />
               <Route
                 path="/article/:id"
                 element={<ArticleDescription listCategorie={listCategorie} />}

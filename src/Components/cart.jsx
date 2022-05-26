@@ -5,8 +5,8 @@ import BotNavBar from "./botNavBar";
 import Item from "./item";
 import { useNavigate } from "react-router-dom";
 import emptyCart from "../images/pannier.png";
-
-const Cart = ({ listArticles }) => {
+//{article.rep}
+const Cart = () => {
   let navigate = useNavigate();
   let cart = useContext(CartContext);
   const { elements } = cart;
@@ -16,8 +16,8 @@ const Cart = ({ listArticles }) => {
   const renderItems = (elements) => {
     if (elements.length === 0) {
       return (
-        <div>
-          <img src={emptyCart} />
+        <div className="self-center">
+          <img className="w-full h-full" src={emptyCart} />
         </div>
       );
     } else {
@@ -43,11 +43,9 @@ const Cart = ({ listArticles }) => {
           <CheckedIcon className="float-right" />
         </div>
       </div>
-      <div className="w-screen flex flex-col justify-center items-center gap-y-4 text-black pb-20 pt-2 px-4">
+      <div className="w-screen flex flex-col justify-center items-center gap-y-4 text-black px-4 py-4">
         {renderItems(elements)}
       </div>
-
-      <BotNavBar />
     </div>
   );
 };
