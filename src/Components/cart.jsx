@@ -4,6 +4,7 @@ import { BackIcon, CheckedIcon } from "./icons";
 import BotNavBar from "./botNavBar";
 import Item from "./item";
 import { useNavigate } from "react-router-dom";
+import emptyCart from "../images/pannier.png";
 
 const Cart = ({ listArticles }) => {
   let navigate = useNavigate();
@@ -14,15 +15,25 @@ const Cart = ({ listArticles }) => {
   };
   const renderItems = (elements) => {
     if (elements.length === 0) {
-      return <div>Pas d'article dans le panier</div>;
+      return (
+        <div>
+          <img src={emptyCart} />
+        </div>
+      );
     } else {
       return elements.map((item, index) => {
-        return <Item key={index} article={item} />;
+        return (
+          <div className="bg-white p-2 h-36 w-full" key={index}>
+            <div className="h-full w-full">
+              <Item article={item} />
+            </div>
+          </div>
+        );
       });
     }
   };
   return (
-    <div>
+    <div className="bg-gray-300 min-h-screen">
       <div className="w-screen h-18 bg-black text-white p-4 grid grid-cols-3 items-center">
         <div>
           <BackIcon className="float-left" click={hundleBack} />
@@ -32,9 +43,7 @@ const Cart = ({ listArticles }) => {
           <CheckedIcon className="float-right" />
         </div>
       </div>
-      <div className="text-white self-center">Mon Panier</div>
-
-      <div className="w-screen grid grid-cols-1 gap-4 text-black items-center justify-items-center pb-24">
+      <div className="w-screen flex flex-col justify-center items-center gap-y-4 text-black pb-20 pt-2 px-4">
         {renderItems(elements)}
       </div>
 
