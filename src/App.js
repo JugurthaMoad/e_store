@@ -41,11 +41,11 @@ function App(props) {
     let first = tab[0];
     if (tab.length > 0) {
       tab.forEach((el) => {
-        if (el.id === first.id) {
+        if (el.id === first.id && el.taille === first.taille) {
           o++;
         }
       });
-      tab = tab.filter((el) => el.id !== first.id);
+      tab = tab.filter((el) => el.id !== first.id || el.taille != first.taille);
 
       article.rep = o;
       article.item = first;
@@ -70,6 +70,16 @@ function App(props) {
     setItems(item);
     fillCart();
   };
+
+  const hundleModify = (article, size) => {
+    itemsInCart.forEach((item) => {
+      if (item.id === article.id) {
+        item.taille = size;
+      }
+    });
+    fillCart();
+  };
+
   useEffect(() => {
     setArticles(getArticles(categorie, gender));
   }, [categorie, gender]);
@@ -95,6 +105,7 @@ function App(props) {
               addItems: hundleItems,
               deleteItem: hundleDelete,
               elements: elementInCart,
+              hundleModify: hundleModify,
             }}
           >
             <Routes>

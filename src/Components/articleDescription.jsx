@@ -10,16 +10,23 @@ const ArticleDescription = ({ listCategorie }) => {
   const [article, setArticle] = useState(getArticleById(id));
   const [showDescription, setDescription] = useState(true); // 0 for hide 1 show
   const [showAvis, setAvis] = useState(true);
+  let cart = useContext(CartContext);
+  let finalArticle = {};
+  const hundleSize = (size) => {
+    finalArticle.taille = size;
+  };
   const hundleDescription = () => {
     setDescription(!showDescription);
-    console.log("description = ", showDescription);
   };
   const hundleAvis = () => {
     setAvis(!showAvis);
-    console.log("Avis = ", showAvis);
   };
-
-  let cart = useContext(CartContext);
+  const hundleAdd = (art) => {
+    finalArticle = { ...art, ...finalArticle };
+    cart.addArticlesCart();
+    cart.addItems(finalArticle);
+    navigate(-1);
+  };
   return (
     <div className="bg-gray-300 min-h-screen">
       <NavBar listCategorie={listCategorie} />
@@ -44,6 +51,7 @@ const ArticleDescription = ({ listCategorie }) => {
                     return (
                       <li
                         className="border-2 border-gray-300 px-4 rounded-2xl"
+                        onClick={() => hundleSize(taille)}
                         key={index}
                       >
                         {taille}
@@ -75,9 +83,7 @@ const ArticleDescription = ({ listCategorie }) => {
         </div>
         <span
           onClick={() => {
-            cart.addArticlesCart();
-            cart.addItems(article);
-            navigate(-1);
+            hundleAdd(article);
           }}
           className="w-screen bg-black block text-white p-4 font-bold text-center fixed bottom-0"
         >

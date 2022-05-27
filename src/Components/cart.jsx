@@ -10,6 +10,8 @@ const Cart = () => {
   let navigate = useNavigate();
   let cart = useContext(CartContext);
   const { elements } = cart;
+  let prix = 0;
+  const [total, setTotal] = useState(prix);
   const hundleBack = () => {
     navigate("/");
   };
@@ -32,6 +34,20 @@ const Cart = () => {
       });
     }
   };
+  const hundlePrice = () => {
+    prix = 0;
+    if (elements.length === 0) {
+      prix = 0;
+    } else {
+      elements.forEach((element) => {
+        prix += element.rep * element.item.prix;
+      });
+    }
+    setTotal(prix);
+  };
+  useEffect(() => {
+    hundlePrice();
+  });
   return (
     <div className="bg-gray-300 min-h-screen">
       <div className="w-screen h-18 bg-black text-white p-4 grid grid-cols-3 items-center">
@@ -45,6 +61,15 @@ const Cart = () => {
       </div>
       <div className="w-screen flex flex-col justify-center items-center gap-y-4 text-black px-4 py-4">
         {renderItems(elements)}
+      </div>
+      <div
+        className={total > 0 ? "w-screen absolute bottom-0 bg-white" : "hidden"}
+      >
+        <span className="w-screen p-4 block">Total:{total} €</span>
+
+        <span className="block w-screen bg-black text-white p-4 text-center font-bold ">
+          PAYER {total}
+        </span>
       </div>
     </div>
   );
