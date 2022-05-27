@@ -4,14 +4,20 @@ import CartContext from "../context/CartContext";
 const Item = ({ article }) => {
   const { deleteItem, addItems, addArticlesCart, hundleModify } =
     useContext(CartContext);
+  const [accept, setAccept] = useState(false);
   const [showSize, setSize] = useState(true);
-
+  const [showAlert, setAlert] = useState(false);
   const hundleAdd = () => {
     addArticlesCart();
     addItems(article.item);
   };
   const hundleDelete = () => {
-    deleteItem(article.item);
+    if (article.rep === 1) {
+      setAlert(true);
+    } else {
+      setAlert(false);
+      deleteItem(article.item);
+    }
   };
   const hundleshowSize = () => {
     setSize(!showSize);
@@ -64,16 +70,16 @@ const Item = ({ article }) => {
       <div
         className={
           showSize
-            ? " bg-white w-screen fixed h-4/6 -bottom-1/2 right-0 hidden"
-            : "bg-white w-screen h-4/6 fixed bottom-0 right-0"
+            ? " bg-white w-screen fixed min-h-3/6 -bottom-1/2 right-0  hidden"
+            : "bg-white w-screen min-h-3/6 fixed bottom-0 right-0 z-[150]"
         }
       >
-        <div>
+        <div className="h-2/3 p-2">
           <span className="w-screen">
             <CloseIcon click={hundleshowSize} />
           </span>
           <div>
-            <img className="h-96 w-screen" src={article.item.image} />
+            <img className="h-40 w-screen" src={article.item.image} />
           </div>
           <div className="p-2 bg-white">
             <div className="text-sm text-stone-500 py-2">
@@ -81,9 +87,6 @@ const Item = ({ article }) => {
             </div>
             <div className="flex justify-between">
               <span className="text-lg font-bold">{article.item.prix} €</span>{" "}
-              <span className="flex" onClick={() => console.log("detail")}>
-                Detail <ForwardIcon className="w-6 h-6" />
-              </span>
             </div>
             <div>
               <span className="text-sm py-2">Taille:</span>
@@ -91,7 +94,11 @@ const Item = ({ article }) => {
                 {article.item.tailles.map((taille, index) => {
                   return (
                     <li
-                      className="border-2 border-gray-300 px-4 rounded-2xl"
+                      className={
+                        taille === article.item.taille
+                          ? "border-2 border-orange-600 px-4 rounded-2xl"
+                          : "border-2 border-gray-300 px-4 rounded-2xl"
+                      }
                       onClick={() => hundleSize(taille)}
                       key={index}
                     >
@@ -100,6 +107,35 @@ const Item = ({ article }) => {
                   );
                 })}
               </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={showAlert ? "fixed" : "hidden"}>
+        <div className="w-screen h-screen bg-black text-white fixed bottom-0 left-0 opacity-50 z-[160]"></div>
+        <div className="w-screen h-screen fixed bottom-0 left-0  z-[260] flex justify-center items-center">
+          <div className="w-2/3 bg-white text-black h-24 flex flex-col justify-center items-center">
+            <span className="p-2">Voulez vous supprimer ?</span>
+            <div className="flex gap-2">
+              <span
+                onClick={() => {
+                  deleteItem(article.item);
+                  setAlert(false);
+                }}
+                className="p-2 bg-black text-white"
+              >
+                {" "}
+                Oui{" "}
+              </span>
+              <span
+                onClick={() => {
+                  setAlert(false);
+                }}
+                className="p-2 bg-black text-white"
+              >
+                {" "}
+                Non{" "}
+              </span>
             </div>
           </div>
         </div>

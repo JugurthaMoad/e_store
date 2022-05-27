@@ -84,7 +84,7 @@ function App(props) {
     setArticles(getArticles(categorie, gender));
   }, [categorie, gender]);
   return (
-    <div>
+    <div className="min-h-screen min-w-screen bg-gray-300">
       <GenderContext.Provider
         value={{
           name: gender,

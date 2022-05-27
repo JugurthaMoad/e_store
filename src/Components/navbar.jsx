@@ -19,6 +19,7 @@ const NavBar = ({ listCategorie }) => {
   const currentGender = useContext(GenderContext);
   const currentCategorie = useContext(CategorieContext);
   const cart = useContext(CartContext);
+
   const hundleShowMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -33,7 +34,7 @@ const NavBar = ({ listCategorie }) => {
   return (
     <>
       <div>
-        <div className="w-full h-20 bg-black text-white px-2 py-0 grid grid-cols-3 items-center md:hidden">
+        <div className="w-full h-16 bg-black text-white px-4 grid grid-cols-3 items-center md:hidden">
           <div className="flex items-center">
             <BackIcon
               click={hundleBack}
@@ -46,23 +47,25 @@ const NavBar = ({ listCategorie }) => {
               onClick={() => {
                 navigate("/");
               }}
-              className="block text-2xl font-semibold uppercase"
+              className="block text-xl font-semibold uppercase"
             >
               Logo
             </span>
           </div>
-          <div className="flex justify-end">
+          <div className="flex justify-end gap-2">
             <FavoriIncon />
-            <CartIcon click={hundleCart} />
-            <span
-              className={
-                cart.articlesInCart > 0
-                  ? "relative bottom-4 block w-6 h-6 rounded-full text-center items-center bg-red-600"
-                  : "hidden"
-              }
-            >
-              {cart.articlesInCart}
-            </span>
+            <div className="flex justify-center items-center">
+              <CartIcon click={hundleCart} />
+              <span
+                className={
+                  cart.articlesInCart > 0
+                    ? "relative flex justify-center items-center bottom-4 block w-5 h-5 rounded-full text-xs bg-red-600"
+                    : "hidden"
+                }
+              >
+                {cart.articlesInCart}
+              </span>
+            </div>
           </div>
         </div>
         <div
@@ -70,7 +73,7 @@ const NavBar = ({ listCategorie }) => {
             showMenu ? "w-5/6 h-4/5 absolute top-0 flex z-40" : "hidden"
           }
         >
-          <div className="bg-gray-400 w-5/6">
+          <div className="bg-gray-400 w-screen">
             <GenderBar />
             <ul className="w-full h-full flex flex-col items-center py-4 gap-y-2">
               {listCategorie.map((cat, index) => {
@@ -98,7 +101,7 @@ const NavBar = ({ listCategorie }) => {
           >
             <CloseIcon />
           </span>
-          <div className=" w-screen h-screen absolute top-0 -z-40 bg-black m-0 opacity-50"></div>
+          <div className="w-screen h-screen fixed top-0 -z-40 bg-black m-0 opacity-50"></div>
         </div>
       </div>
     </>

@@ -1,7 +1,6 @@
 import React, { Component, useContext, useState, useEffect } from "react";
 import CartContext from "../context/CartContext";
 import { BackIcon, CheckedIcon } from "./icons";
-import BotNavBar from "./botNavBar";
 import Item from "./item";
 import { useNavigate } from "react-router-dom";
 import emptyCart from "../images/pannier.png";
@@ -50,25 +49,36 @@ const Cart = () => {
   });
   return (
     <div className="bg-gray-300 min-h-screen">
-      <div className="w-screen h-18 bg-black text-white p-4 grid grid-cols-3 items-center">
+      <div className="w-screen h-16 bg-black text-white p-2 grid grid-cols-3 items-center">
         <div>
           <BackIcon className="float-left" click={hundleBack} />
         </div>
-        <div className="text-center text-xl font-bold">Mon Panier</div>
+        <div className="text-center text-l font-bold">Mon Panier</div>
         <div>
           <CheckedIcon className="float-right" />
         </div>
       </div>
-      <div className="w-screen flex flex-col justify-center items-center gap-y-4 text-black px-4 py-4">
+      <div className="w-screen flex flex-col justify-center items-center gap-y-4 pb-24 text-black px-4 py-4">
         {renderItems(elements)}
       </div>
       <div
-        className={total > 0 ? "w-screen absolute bottom-0 bg-white" : "hidden"}
+        className={
+          total > 0
+            ? "w-screen fixed bottom-0 bg-white flex flex-col"
+            : "hidden"
+        }
       >
-        <span className="w-screen p-4 block">Total:{total} €</span>
+        <span className="w-screen px-2 py-4 text-xl font-bold text-black block">
+          Total:{total} €
+        </span>
 
-        <span className="block w-screen bg-black text-white p-4 text-center font-bold ">
-          PAYER {total}
+        <span
+          onClick={() => {
+            console.log("Total a payer pour : ", total, elements);
+          }}
+          className="block w-screen bg-black text-white p-4 text-center text-xl font-bold "
+        >
+          PAYER {total} €
         </span>
       </div>
     </div>
