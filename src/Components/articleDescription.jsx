@@ -116,34 +116,43 @@ const ArticleDescription = ({ listCategorie }) => {
         className={
           showDescription
             ? " bg-white w-screen fixed h-4/6 -bottom-1/2   hidden"
-            : "bg-white w-screen fixed h-4/6 bottom-0 transition duration-700 ease-in-out grid grid-cols-1"
+            : "bg-white w-screen fixed bottom-0 grid grid-cols-1"
         }
       >
-        <div className="grid grid-cols-3 h-1/6 content-center">
-          <span>
-            <CloseIcon className="w-6 h-6" click={hundleDescription} />
-          </span>
-          <div className="text-center text-xl">Description</div>
-          <div></div>
+        <div className="z-[160] w-screen h-screen fixed bottom-0 left-0 bg-black opacity-50 "></div>
+        <div className="w-screen h-screen fixed bottom-0 flex left-0 z-[260] ">
+          <div className="bg-white w-screen h-1/2 fixed bottom-0 left-0">
+            <div className="grid grid-cols-3 h-1/6 content-center">
+              <span>
+                <CloseIcon className="w-6 h-6" click={hundleDescription} />
+              </span>
+              <div className="text-center text-xl">Description</div>
+              <div></div>
+            </div>
+            <div>Contenu de la description</div>
+          </div>
         </div>
-        <div>Contenu de la description</div>
       </div>
       <div
         className={
           showAvis
-            ? "bg-white w-screen h-screen fixed bottom-0 -right-full grid grid-cols-1 p-0 hidden"
-            : "bg-white w-screen h-4/6 fixed bottom-0 right-0 grid grid-cols-1 p-2 z-40"
+            ? "bg-white w-screen h-4/6 fixed bottom-0 -right-full flex p-0 hidden"
+            : " bg-white fixed flex flex-col "
         }
       >
-        <div className="grid grid-cols-3 h-12 p-0 opacity-100 ">
-          <span>
-            <BackIcon className="w-6 h-6" click={hundleAvis} />
-          </span>
-          <div className="text-center text-xl">Avis</div>
-          <div></div>
+        <div className="z-[160] w-screen h-screen fixed bottom-0 left-0 bg-black opacity-50 "></div>
+        <div className="w-screen h-screen fixed bottom-0 flex left-0 z-[260] ">
+          <div className="bg-white w-screen h-4/6 fixed bottom-0 left-0">
+            <div className=" w-screen grid grid-cols-3 h-12 p-0">
+              <span>
+                <BackIcon className="w-6 h-6" click={hundleAvis} />
+              </span>
+              <div className="text-center text-xl">Avis</div>
+              <div></div>
+            </div>
+            <div className="w-screen">contenu des avis</div>
+          </div>
         </div>
-
-        <div className="w-screen h-screen fixed top-0 left-0 bg-black opacity-75 -z-40"></div>
       </div>
       <div
         className={
