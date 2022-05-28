@@ -5,6 +5,7 @@ import Test from "./Components/test";
 import Profile from "./Components/profile";
 import ArticleDescription from "./Components/articleDescription";
 import Cart from "./Components/cart";
+import Auth from "./Components/auth";
 import React, { Component, useState, useEffect } from "react";
 import { getCategorie, getArticles } from "./services/data";
 import GenderContext from "./context/genderContext";
@@ -135,6 +136,7 @@ function App(props) {
                 path="/article/:id"
                 element={<ArticleDescription listCategorie={listCategorie} />}
               />
+              <Route path="/auth" element={<Auth />} />
               <Route
                 path="*"
                 element={
