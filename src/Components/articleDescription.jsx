@@ -9,8 +9,8 @@ const ArticleDescription = ({ listCategorie }) => {
   let { id } = useParams();
   let navigate = useNavigate();
   const [article, setArticle] = useState(getArticleById(id));
-  const [showDescription, setDescription] = useState(true); // 0 for hide 1 show
-  const [showAvis, setAvis] = useState(true);
+  const [showDescription, setDescription] = useState(false); // 0 for hide 1 show
+  const [showAvis, setAvis] = useState(false);
   const [sizechosed, setSize] = useState(true);
   const [choose, setChoose] = useState(-1);
   const [showAlert, setAlert] = useState(false);
@@ -115,99 +115,94 @@ const ArticleDescription = ({ listCategorie }) => {
       <div
         className={
           showDescription
-            ? " bg-white w-screen fixed h-4/6 -bottom-1/2   hidden"
-            : "bg-white w-screen fixed bottom-0 grid grid-cols-1"
+            ? "transition duration-300 ease-out h-1/2 w-full bg-white  fixed bottom-0 translate-y-0 z-[150]"
+            : "transition duration-300 ease-out h-1/2 w-full bg-white  fixed bottom-0 translate-y-full z-[150]"
         }
       >
-        <div className="z-[160] w-screen h-screen fixed bottom-0 left-0 bg-black opacity-50 "></div>
-        <div className="w-screen h-screen fixed bottom-0 flex left-0 z-[260] ">
-          <div className="bg-white w-screen h-1/2 fixed bottom-0 left-0">
-            <div className="grid grid-cols-3 h-1/6 content-center">
-              <span>
-                <CloseIcon className="w-6 h-6" click={hundleDescription} />
-              </span>
-              <div className="text-center text-xl">Description</div>
-              <div></div>
-            </div>
-            <div>Contenu de la description</div>
-          </div>
-        </div>
+        <span>
+          <CloseIcon className="w-6 h-6" click={hundleDescription} />
+        </span>
+        Contenu de la description
+      </div>
+      <div
+        className={
+          showDescription
+            ? "transition-opacity w-screen h-screen bg-black opacity-50 fixed bottom-0 z-40"
+            : "transition-opacity w-screen h-screen bg-black opacity-0 fixed bottom-0 z-[-150]"
+        }
+      ></div>
+
+      <div
+        className={
+          showAvis
+            ? "transition duration-300 ease-out h-4/6 w-full  bg-white text-black  fixed bottom-0 translate-x-0 z-[150]"
+            : "transition duration-300 ease-out h-4/6 w-full  bg-white text-black  fixed  bottom-0 translate-x-full z-[150]"
+        }
+      >
+        <span>
+          <BackIcon className="w-6 h-6" click={hundleAvis} />
+        </span>
       </div>
       <div
         className={
           showAvis
-            ? "bg-white w-screen h-4/6 fixed bottom-0 -right-full flex p-0 hidden"
-            : " bg-white fixed flex flex-col "
+            ? "transition-opacity w-screen h-screen bg-black opacity-25 bottom-0 fixed z-40"
+            : "transition-opacity w-screen h-screen bg-black opacity-0 bottom-0 fixed  z-[-150]"
         }
-      >
-        <div className="z-[160] w-screen h-screen fixed bottom-0 left-0 bg-black opacity-50 "></div>
-        <div className="w-screen h-screen fixed bottom-0 flex left-0 z-[260] ">
-          <div className="bg-white w-screen h-4/6 fixed bottom-0 left-0">
-            <div className=" w-screen grid grid-cols-3 h-12 p-0">
-              <span>
-                <BackIcon className="w-6 h-6" click={hundleAvis} />
-              </span>
-              <div className="text-center text-xl">Avis</div>
-              <div></div>
-            </div>
-            <div className="w-screen">contenu des avis</div>
-          </div>
-        </div>
-      </div>
+      ></div>
       <div
         className={
-          sizechosed
-            ? " bg-white w-screen fixed  -bottom-1/2 hidden"
-            : "bg-white w-screen fixed bottom-0 z-40 ease-in-out grid grid-cols-1"
+          !sizechosed
+            ? "transition duration-300 ease-out h-auto w-full bg-white  text-black fixed bottom-0 translate-y-0 z-[150]"
+            : "transition duration-300 ease-out h-auto w-full bg-white  fixed text-black bottom-0 translate-y-full z-[150]"
         }
       >
-        <div className="z-[150]">
-          <div className="p-2 pb-20">
-            <div className="h-1/4 border-2 border-black">
-              <img className=" w-screen h-48" src={article.image} />
+        <div className="p-1">
+          <div className="h-1/4 border-2 border-black">
+            <img className=" w-screen h-48" src={article.image} />
+          </div>
+          <div className="p-2 bg-white">
+            <div className="text-sm text-stone-500 py-2">{article.name}</div>
+            <div className="flex justify-between">
+              <span className="text-lg font-bold">{article.prix} €</span>{" "}
             </div>
-            <div className="p-2 bg-white">
-              <div className="text-sm text-stone-500 py-2">{article.name}</div>
-              <div className="flex justify-between">
-                <span className="text-lg font-bold">{article.prix} €</span>{" "}
-              </div>
-              <div className="">
-                <span className="text-sm py-2">Taille:</span>
-                <ul className="flex gap-2 pl-6">
-                  {article.tailles.map((taille, index) => {
-                    return (
-                      <li
-                        className={
-                          choose === index
-                            ? "border-2 border-orange-600 px-4 rounded-2xl"
-                            : "border-2 border-gray-300 px-4 rounded-2xl"
-                        }
-                        onClick={() => hundleSize(taille, index)}
-                        key={index}
-                      >
-                        {taille}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
+            <div className="">
+              <span className="text-sm py-2">Taille:</span>
+              <ul className="flex gap-2 pl-6">
+                {article.tailles.map((taille, index) => {
+                  return (
+                    <li
+                      className={
+                        choose === index
+                          ? "border-2 border-orange-600 px-4 rounded-2xl"
+                          : "border-2 border-gray-300 px-4 rounded-2xl"
+                      }
+                      onClick={() => hundleSize(taille, index)}
+                      key={index}
+                    >
+                      {taille}
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
-          <span
-            onClick={() => {
-              if (finalArticle.taille !== undefined) {
-                hundleAdd(article);
-                setAlert(false);
-              } else {
-                setAlert(true);
-              }
-            }}
-            className="w-screen bg-black block text-white absolute bottom-0 h-16 flex justify-center items-center font-bold text-center"
-          >
-            METRE A JOUR
-          </span>
         </div>
+        <span
+          onClick={() => {
+            if (finalArticle.taille !== undefined) {
+              hundleAdd(article);
+              setAlert(false);
+            } else {
+              setAlert(true);
+            }
+          }}
+          className="w-screen bg-black block text-white  bottom-0 h-16 flex justify-center items-center font-bold text-center"
+        >
+          METRE A JOUR
+        </span>
       </div>
+
       <AlertMessage
         active={showAlert}
         message={"taille"}

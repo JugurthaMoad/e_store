@@ -6,11 +6,13 @@ import Profile from "./Components/profile";
 import ArticleDescription from "./Components/articleDescription";
 import Cart from "./Components/cart";
 import Auth from "./Components/auth";
+import New from "./Components/new";
 import React, { Component, useState, useEffect } from "react";
 import { getCategorie, getArticles } from "./services/data";
 import GenderContext from "./context/genderContext";
 import CategorieContext from "./context/CategorieContext";
 import CartContext from "./context/CartContext";
+import UserContext from "./context/UserContext";
 import Articles from "./Components/articles";
 import { Routes, Route, Link } from "react-router-dom";
 function App(props) {
@@ -23,6 +25,10 @@ function App(props) {
   const [CartArticles, setCartArticles] = useState(0);
   // les elements dans le panier
   const [itemsInCart, setItems] = useState([]);
+  const [user, setUser] = useState({
+    id: null,
+    name: null,
+  });
   let tab = itemsInCart;
   let articles = [];
   // element whit repetition
@@ -86,71 +92,80 @@ function App(props) {
   }, [categorie, gender]);
   return (
     <div className="min-h-screen min-w-screen bg-gray-300">
-      <GenderContext.Provider
+      <UserContext.Provider
         value={{
-          name: gender,
-          setCurrentGender: hundleCurrentGender,
+          user: user,
+          setUser: setUser,
         }}
       >
-        <CategorieContext.Provider
+        <GenderContext.Provider
           value={{
-            name: categorie,
-            setCurrentCategorie: setCategorie,
+            name: gender,
+            setCurrentGender: hundleCurrentGender,
           }}
         >
-          <CartContext.Provider
+          <CategorieContext.Provider
             value={{
-              articlesInCart: CartArticles,
-              items: itemsInCart,
-              addArticlesCart: hundleCartArticles,
-              addItems: hundleItems,
-              deleteItem: hundleDelete,
-              elements: elementInCart,
-              hundleModify: hundleModify,
+              name: categorie,
+              setCurrentCategorie: setCategorie,
             }}
           >
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <>
-                    <NavBar listCategorie={listCategorie} />
-                    <Header listCategorie={listCategorie} />
-                    <Articles listArticles={listArticles} />
-                    <BotNavBar />
-                  </>
-                }
-              />
-              <Route
-                path="/test"
-                element={
-                  <Test
-                    listCategorie={listCategorie}
-                    listArticles={listArticles}
-                  />
-                }
-              />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route
-                path="/article/:id"
-                element={<ArticleDescription listCategorie={listCategorie} />}
-              />
-              <Route path="/auth" element={<Auth />} />
-              <Route
-                path="*"
-                element={
-                  <>
-                    <div>
-                      <Link to="/">Home Page</Link>
-                    </div>
-                  </>
-                }
-              />
-            </Routes>
-          </CartContext.Provider>
-        </CategorieContext.Provider>
-      </GenderContext.Provider>
+            <CartContext.Provider
+              value={{
+                articlesInCart: CartArticles,
+                items: itemsInCart,
+                addArticlesCart: hundleCartArticles,
+                addItems: hundleItems,
+                deleteItem: hundleDelete,
+                elements: elementInCart,
+                hundleModify: hundleModify,
+              }}
+            >
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <NavBar listCategorie={listCategorie} />
+                      <Header listCategorie={listCategorie} />
+                      <Articles listArticles={listArticles} />
+                      <BotNavBar />
+                    </>
+                  }
+                />
+                <Route
+                  path="/test"
+                  element={
+                    <Test
+                      listCategorie={listCategorie}
+                      listArticles={listArticles}
+                    />
+                  }
+                />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route
+                  path="/article/:id"
+                  element={<ArticleDescription listCategorie={listCategorie} />}
+                />
+                <Route path="/auth" element={<Auth />} />
+                <Route
+                  path="*"
+                  element={
+                    <>
+                      <div>
+                        <New>
+                          <div>Test </div>
+                        </New>
+                      </div>
+                    </>
+                  }
+                />
+              </Routes>
+            </CartContext.Provider>
+          </CategorieContext.Provider>
+        </GenderContext.Provider>
+      </UserContext.Provider>
     </div>
   );
 }

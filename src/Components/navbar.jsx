@@ -28,7 +28,6 @@ const NavBar = ({ listCategorie }) => {
     navigate(-1);
   };
   const hundleCart = () => {
-    console.log("Cart");
     navigate("/cart");
   };
   return (
@@ -70,10 +69,12 @@ const NavBar = ({ listCategorie }) => {
         </div>
         <div
           className={
-            showMenu ? "w-5/6 h-4/5 absolute top-0 flex z-40" : "hidden"
+            showMenu
+              ? "transition duration-300 ease-out w-5/6 h-4/5 absolute top-0 flex  translate-x-0 z-[150]"
+              : "transition duration-300 ease-out w-5/6 h-4/5 absolute top-0 -left-10 flex  -translate-x-full z-[150]"
           }
         >
-          <div className="bg-gray-400 w-screen">
+          <div className="bg-gray-400 w-full">
             <GenderBar />
             <ul className="w-full h-full flex flex-col items-center py-4 gap-y-2">
               {listCategorie.map((cat, index) => {
@@ -96,13 +97,19 @@ const NavBar = ({ listCategorie }) => {
             </ul>
           </div>
           <span
-            className="w-12 bg-orange-500 text-black h-12 flex items-center"
+            className="w-8 bg-orange-500 text-black h-8 flex items-center"
             onClick={hundleShowMenu}
           >
             <CloseIcon />
           </span>
-          <div className="w-screen h-screen fixed top-0 -z-40 bg-black m-0 opacity-50"></div>
         </div>
+        <div
+          className={
+            showMenu
+              ? "transition-opacity w-screen h-5/6 bg-black opacity-25 bottom-0 fixed z-40"
+              : "transition-opacity w-screen h-5/6 bg-black opacity-0 bottom-0 fixed  z-[-150]"
+          }
+        ></div>
       </div>
     </>
   );
