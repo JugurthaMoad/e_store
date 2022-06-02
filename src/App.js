@@ -14,6 +14,8 @@ import CategorieContext from "./context/CategorieContext";
 import CartContext from "./context/CartContext";
 import UserContext from "./context/UserContext";
 import Articles from "./Components/articles";
+import Login from "./Components/login";
+import Register from "./Components/register";
 import { Routes, Route, Link } from "react-router-dom";
 function App(props) {
   const [gender, setGender] = useState("Femme"); // by default, display categories for femme
@@ -149,6 +151,8 @@ function App(props) {
                   element={<ArticleDescription listCategorie={listCategorie} />}
                 />
                 <Route path="/auth" element={<Auth />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route
                   path="*"
                   element={

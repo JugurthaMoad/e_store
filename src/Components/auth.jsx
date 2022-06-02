@@ -1,42 +1,62 @@
 import React, { Component, useState } from "react";
+import { CloseIcon, MailIcon } from "./icons";
 import Login from "./login";
 import Register from "./register";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 const Auth = () => {
   const navigate = useNavigate();
-  const [page, setPage] = useState(0); // 1 conn 2 inscription
+  const url = "/login";
+  const [page, setPage] = useState(0); // 0 conn 1 inscription
   const hundleClick = (page) => {
     setPage(page);
   };
+  const hundClose = () => {
+    navigate(-1);
+  };
+  const hundleButton = () => {
+    navigate(url);
+  };
+  const hundleLogo = () => {
+    console.log("logo");
+    navigate("/");
+  };
   return (
-    <div className="w-screen h-screen bg-white text-black flex flex-col p-2">
-      <div className="w-full h-fit flex justify-center items-center p-4 text-2xl font-bold">
-        Logo <span onClick={() => navigate(-1)}> X </span>
+    <div className="h-screen w-screen bg-white flex flex-col">
+      <div className="flex w-screen h-16 justify-between items-center p-2">
+        <span onClick={hundleLogo} className="block text-2xl font-bold">
+          Logo
+        </span>
+        <span className="text-xl font-medium underline">
+          <Link className="no-underline" to="/register">
+            S'incrire maintenant
+          </Link>
+        </span>
+        <CloseIcon className="" onClick={hundClose} />
       </div>
-      <div className="w-full h-full">
-        <div className="w-full flex text-xl  gap-1 font-medium">
-          <span
-            onClick={() => hundleClick(0)}
-            className={
-              page === 0
-                ? "block w-1/2 text-right p-1 text-orange-600"
-                : "block w-1/2 text-right p-1"
-            }
-          >
-            Connexion
-          </span>
-          <span
-            onClick={() => hundleClick(1)}
-            className={
-              page !== 0
-                ? "block w-1/2 text-left p-1 text-orange-600"
-                : "block w-1/2 text-left p-1"
-            }
-          >
-            Inscription
-          </span>
-        </div>
-        <div>{page === 0 ? <Login /> : <Register />}</div>
+      <div className="w-screen  bg-gray-200 p-4 flex flex-col gap-1 justify-around py-8">
+        <span className="font-medium text-3xl block ">
+          Bienvenu à nouveau !
+        </span>
+        <p className="text-gray-800 py-2 ">
+          Connectez-vous à votre compte et commencez vos achats
+        </p>
+        <span
+          onClick={hundleButton}
+          className="w-5/6 text-white flex justify-center items-center bg-black p-2 rounded text-xl gap-2 m-auto"
+        >
+          <MailIcon className="" /> <span>connexion </span>
+        </span>
+      </div>
+      <div className="w-screen flex flex-col gap-3 p-2">
+        <p className="w-full text-center p-2 text-m">
+          Ou se connecter avec un compte existant
+        </p>
+        <span className="block w-full border-2 border-black p-2 rounded m-auto text-center text-xl font-medium">
+          continuer avec google
+        </span>
+        <span className="block w-full border-2 border-black p-2 rounded m-auto text-center text-xl font-medium">
+          continuer avec facebook
+        </span>
       </div>
     </div>
   );
