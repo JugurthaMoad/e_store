@@ -49,7 +49,9 @@ const Login = () => {
     }
     console.log("suivant");
   };
-  console.log({ errors });
+  const hundlePassword = () => {
+    console.log("password to change ");
+  };
   return (
     <div className="h-screen w-screen bg-white flex flex-col">
       <div className="flex w-screen h-16 justify-between items-center p-2">
@@ -93,6 +95,12 @@ const Login = () => {
           </p>
           <ValidateButton type="submit" label="Suivant" />
         </form>
+        <span
+          onClick={hundlePassword}
+          className="font-medium uppercase underline underline-offset-8"
+        >
+          mot de passe oublié ?
+        </span>
       </div>
     </div>
   );

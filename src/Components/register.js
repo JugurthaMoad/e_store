@@ -5,6 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { CloseIcon } from "./icons";
 const Register = () => {
   const [account, setAccount] = useState({
+    username: "",
     email: "",
     password: "",
   });
@@ -16,10 +17,12 @@ const Register = () => {
     navigate("/");
   };
   const [errors, setErros] = useState({
+    username: false,
     email: false,
     password: false,
   });
   const schema = Joi.object({
+    username: Joi.string().min(5).label("Username"),
     email: Joi.string().email().label("Email"),
     password: Joi.string().min(5).label("Password"),
   });
@@ -47,7 +50,7 @@ const Register = () => {
       });
       setErros(err);
     }
-    console.log("Register ");
+    console.log("Register user :", { account });
   };
 
   return (
@@ -68,6 +71,18 @@ const Register = () => {
           Créer un compte
         </span>
         <form onSubmit={hundleSubmit} className=" flex flex-col ">
+          <Input
+            onChange={hundleChange}
+            value={account.username}
+            label="UserName"
+            name="username"
+            type="text"
+          />
+          <p
+            className={errors.username ? "w-full p-2 text-red-700 " : "hidden"}
+          >
+            Nom d'utilisateur minimum 5 caractére
+          </p>
           <Input
             onChange={hundleChange}
             value={account.email}
