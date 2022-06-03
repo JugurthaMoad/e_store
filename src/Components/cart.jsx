@@ -12,7 +12,7 @@ const Cart = () => {
   let prix = 0;
   const [total, setTotal] = useState(prix);
   const hundleBack = () => {
-    navigate("/");
+    navigate(-1);
   };
   const renderItems = (elements) => {
     if (elements.length === 0) {

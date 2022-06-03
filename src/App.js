@@ -28,8 +28,8 @@ function App(props) {
   // les elements dans le panier
   const [itemsInCart, setItems] = useState([]);
   const [user, setUser] = useState({
-    id: null,
-    name: null,
+    id: 5,
+    name: "jugurtha",
   });
   let tab = itemsInCart;
   let articles = [];
