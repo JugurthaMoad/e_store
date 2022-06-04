@@ -28,7 +28,7 @@ function App(props) {
   // les elements dans le panier
   const [itemsInCart, setItems] = useState([]);
   const [user, setUser] = useState({
-    id: 5,
+    id: 3,
     name: "jugurtha",
   });
   let tab = itemsInCart;
@@ -93,7 +93,7 @@ function App(props) {
     setArticles(getArticles(categorie, gender));
   }, [categorie, gender]);
   return (
-    <div className="min-h-screen min-w-screen bg-gray-300">
+    <div className="min-h-screen w-screen bg-gray-300 md:bg-white">
       <UserContext.Provider
         value={{
           user: user,

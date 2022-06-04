@@ -24,7 +24,7 @@ const Cart = () => {
     } else {
       return elements.map((item, index) => {
         return (
-          <div className="bg-white p-2 h-36 w-full" key={index}>
+          <div className="bg-white p-2 h-36 w-full md:w-5/12" key={index}>
             <div className="h-full w-full">
               <Item article={item} />
             </div>
@@ -48,38 +48,45 @@ const Cart = () => {
     hundlePrice();
   });
   return (
-    <div className="bg-gray-300 min-h-screen">
-      <div className="w-screen h-16 bg-black text-white p-2 grid grid-cols-3 items-center">
-        <div>
-          <BackIcon className="float-left" click={hundleBack} />
-        </div>
-        <div className="text-center text-l font-bold">Mon Panier</div>
-        <div>
-          <CheckedIcon className="float-right" />
+    <div className="bg-gray-300 min-h-screen md:bg-white">
+      <div className="w-screen bg-black ">
+        <div className="w-screen h-16 bg-black text-white p-2 grid grid-cols-3 items-center  md:px-2 md:gap-2 md:justify-between md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+          <div>
+            <BackIcon
+              className="cursor-pointer float-left"
+              click={hundleBack}
+            />
+          </div>
+          <div className="text-center text-l font-bold">Mon Panier</div>
+          <div>
+            <CheckedIcon className="float-right" />
+          </div>
         </div>
       </div>
-      <div className="w-screen flex flex-col justify-center items-center gap-y-4 pb-24 text-black px-4 py-4">
-        {renderItems(elements)}
-      </div>
-      <div
-        className={
-          total > 0
-            ? "w-screen fixed bottom-0 bg-white flex flex-col"
-            : "hidden"
-        }
-      >
-        <span className="w-screen px-2 py-4 text-xl font-bold text-black block">
-          Total:{total} €
-        </span>
-
-        <span
-          onClick={() => {
-            console.log("Total a payer pour : ", total, elements);
-          }}
-          className="block w-screen bg-black text-white p-4 text-center text-xl font-bold "
+      <div className=" md:flex md:flex-col md:justify-center md:items-center bg-gray-200 md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+        <div className="w-screen flex flex-col justify-center items-center gap-y-4 pb-24 text-black px-4 py-4 md:w-11/12 md:grid md:grid-cols-3 md:gap-1">
+          {renderItems(elements)}
+        </div>
+        <div
+          className={
+            total > 0
+              ? "w-screen fixed bottom-0 bg-white flex flex-col md:relative "
+              : "hidden"
+          }
         >
-          PAYER {total} €
-        </span>
+          <span className="w-screen px-2 py-4 text-xl font-bold text-black block md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+            Total:{total} €
+          </span>
+
+          <span
+            onClick={() => {
+              console.log("Total a payer pour : ", total, elements);
+            }}
+            className="block w-screen bg-black text-white p-4 text-center text-xl font-bold md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto"
+          >
+            PAYER {total} €
+          </span>
+        </div>
       </div>
     </div>
   );

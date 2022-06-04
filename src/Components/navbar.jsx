@@ -19,7 +19,7 @@ const NavBar = ({ listCategorie }) => {
   const currentGender = useContext(GenderContext);
   const currentCategorie = useContext(CategorieContext);
   const cart = useContext(CartContext);
-
+  const [profileDropMenu, setProfile] = useState(false);
   const hundleShowMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -30,9 +30,12 @@ const NavBar = ({ listCategorie }) => {
   const hundleCart = () => {
     navigate("/cart");
   };
+  const hundleProfil = () => {
+    navigate("/profile");
+  };
   return (
     <>
-      <div>
+      <div className="w-full">
         <div className="w-full h-16 bg-black text-white px-4 grid grid-cols-3 items-center md:hidden">
           <div className="flex items-center">
             <BackIcon
@@ -106,10 +109,58 @@ const NavBar = ({ listCategorie }) => {
         <div
           className={
             showMenu
-              ? "transition-opacity w-screen h-5/6 bg-black opacity-25 bottom-0 fixed z-40"
-              : "transition-opacity w-screen h-5/6 bg-black opacity-0 bottom-0 fixed  z-[-150]"
+              ? "transition-opacity w-screen h-screen bg-black opacity-25 bottom-0 fixed z-40"
+              : "transition-opacity w-screen h-screen bg-black opacity-0 bottom-0 fixed  z-[-150]"
           }
         ></div>
+        <div className="hidden md:fixed md:block md:w-screen md:bg-black md:text-white md:h-16">
+          <div className="md:relative md:h-16 md:flex md:justify-between md:items-center md:gap-2 md:px-6 md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+            <div className="">
+              {" "}
+              <BackIcon
+                click={hundleBack}
+                className={
+                  useMatch("/")
+                    ? "hidden"
+                    : "cursor-pointer relative hover:text-orange-600"
+                }
+              />
+              <div className={!useMatch("/") ? "hidden" : " relative"}>
+                <GenderBar />
+              </div>
+            </div>
+            <div
+              onClick={() => navigate("/")}
+              className="cursor-pointer block text-2xl font-semibold uppercase"
+            >
+              LOGO
+            </div>
+            <div className="flex justify-center items-center gap-5">
+              <ProfilIcon
+                click={hundleProfil}
+                className="cursor-pointer md:hover:text-orange-600"
+              />
+
+              <FavoriIncon className="cursor-pointer md:hover:text-orange-600" />
+
+              <div className="cursor-pointer h-full flex justify-center items-center">
+                <CartIcon
+                  className="md:hover:text-orange-600"
+                  click={hundleCart}
+                />
+                <span
+                  className={
+                    cart.articlesInCart > 0
+                      ? "relative flex justify-center items-center bottom-4 block w-5 h-5 rounded-full text-xs bg-red-600"
+                      : "hidden"
+                  }
+                >
+                  {cart.articlesInCart}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

@@ -45,7 +45,7 @@ export const Input = ({ label, type, ...rest }) => {
             placeholder={`your ${label}`}
             {...rest}
           />
-          <span onClick={hundleSee} className="block">
+          <span onClick={hundleSee} className="block cursor-pointer">
             {see ? "cacher" : "voir"}
           </span>
         </div>

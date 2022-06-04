@@ -5,14 +5,14 @@ const CategoriesBar = ({ listCategorie }) => {
   const currentCategorie = useContext(CategorieContext);
   return (
     <div className="w-full">
-      <ul className="w-full text-xl flex justify-between">
+      <ul className="w-full text-xl flex justify-between ">
         {listCategorie.map((cat, index) => {
           return (
             <li
               key={index}
               onClick={() => currentCategorie.setCurrentCategorie(cat)}
               className={
-                "w-full bg-gray-50 text-center p-2" +
+                "cursor-pointer w-full bg-gray-50 hover:text-orange-600 text-center p-2" +
                 (index < listCategorie.length - 1
                   ? " border-r-2 border-gray-800"
                   : " border-0") +

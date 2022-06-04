@@ -54,22 +54,31 @@ const Login = () => {
   };
   return (
     <div className="h-screen w-screen bg-white flex flex-col">
-      <div className="flex w-screen h-16 justify-between items-center p-2">
-        <span onClick={hundleLogo} className="block text-2xl font-bold">
-          Logo
-        </span>
-        <span className="text-xl font-medium underline underline-offset-8">
-          <Link className="no-underline" to="/register">
-            S'incrire maintenant
-          </Link>
-        </span>
-        <CloseIcon className="" onClick={hundClose} />
+      <div className="w-screen shadow-md">
+        <div className="flex w-screen h-16 justify-between items-center p-2 md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+          <span
+            onClick={hundleLogo}
+            className="block text-2xl font-bold cursor-pointer"
+          >
+            Logo
+          </span>
+          <span className="text-xl font-medium underline underline-offset-8">
+            <Link className="no-underline" to="/register">
+              S'incrire maintenant
+            </Link>
+          </span>
+          <CloseIcon className="cursor-pointer" onClick={hundClose} />
+        </div>
       </div>
-      <div className="w-screen bg-gray-100 py-12 px-4 h-full">
-        <span className="block w-full text-3xl font-bold ">
+
+      <div className="w-screen bg-gray-100 py-12 px-4 h-full md:bg-transparent md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+        <span className="block w-full text-3xl font-bold md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto ">
           Se connecter avec l'e-mail
         </span>
-        <form onSubmit={hundleSubmit} className=" flex flex-col ">
+        <form
+          onSubmit={hundleSubmit}
+          className=" flex flex-col md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto"
+        >
           <Input
             onChange={hundleChange}
             value={account.email}
@@ -97,7 +106,7 @@ const Login = () => {
         </form>
         <span
           onClick={hundlePassword}
-          className="font-medium uppercase underline underline-offset-8"
+          className="block font-medium uppercase underline underline-offset-8 cursor-pointer md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto"
         >
           mot de passe oublié ?
         </span>

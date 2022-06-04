@@ -183,7 +183,7 @@ export const BackIcon = ({ click, ...props }) => {
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       role="img"
-      width="3em"
+      width="1.8em"
       height="2em"
       preserveAspectRatio="xMidYMid meet"
       viewBox="0 0 24 24"

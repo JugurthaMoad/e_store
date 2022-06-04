@@ -7,7 +7,7 @@ const BotNavBar = ({ articlesInCart, ...props }) => {
   const location = useLocation();
 
   return (
-    <div className=" grid grid-cols-3 items-center justify-center p-3 fixed bottom-0 w-full bg-black text-white">
+    <div className=" grid grid-cols-3 items-center justify-center p-3 fixed bottom-0 w-full bg-black text-white md:hidden">
       <div className="flex justify-center">
         <NavLink
           to="/"
