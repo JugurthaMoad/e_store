@@ -5,12 +5,17 @@ import Test from "./Components/test";
 import Profile from "./Components/profile";
 import ArticleDescription from "./Components/articleDescription";
 import Cart from "./Components/cart";
+import Auth from "./Components/auth";
+import New from "./Components/new";
 import React, { Component, useState, useEffect } from "react";
 import { getCategorie, getArticles } from "./services/data";
 import GenderContext from "./context/genderContext";
 import CategorieContext from "./context/CategorieContext";
 import CartContext from "./context/CartContext";
+import UserContext from "./context/UserContext";
 import Articles from "./Components/articles";
+import Login from "./Components/login";
+import Register from "./Components/register";
 import { Routes, Route, Link } from "react-router-dom";
 function App(props) {
   const [gender, setGender] = useState("Femme"); // by default, display categories for femme
@@ -22,6 +27,10 @@ function App(props) {
   const [CartArticles, setCartArticles] = useState(0);
   // les elements dans le panier
   const [itemsInCart, setItems] = useState([]);
+  const [user, setUser] = useState({
+    id: 3,
+    name: "jugurtha",
+  });
   let tab = itemsInCart;
   let articles = [];
   // element whit repetition
@@ -41,11 +50,11 @@ function App(props) {
     let first = tab[0];
     if (tab.length > 0) {
       tab.forEach((el) => {
-        if (el.id === first.id) {
+        if (el.id === first.id && el.taille === first.taille) {
           o++;
         }
       });
-      tab = tab.filter((el) => el.id !== first.id);
+      tab = tab.filter((el) => el.id !== first.id || el.taille != first.taille);
 
       article.rep = o;
       article.item = first;
@@ -70,77 +79,97 @@ function App(props) {
     setItems(item);
     fillCart();
   };
+
+  const hundleModify = (article, size) => {
+    itemsInCart.forEach((item) => {
+      if (item.id === article.id) {
+        item.taille = size;
+      }
+    });
+    fillCart();
+  };
+
   useEffect(() => {
     setArticles(getArticles(categorie, gender));
   }, [categorie, gender]);
   return (
-    <div>
-      <GenderContext.Provider
+    <div className="min-h-screen w-screen bg-gray-300 md:bg-white">
+      <UserContext.Provider
         value={{
-          name: gender,
-          setCurrentGender: hundleCurrentGender,
+          user: user,
+          setUser: setUser,
         }}
       >
-        <CategorieContext.Provider
+        <GenderContext.Provider
           value={{
-            name: categorie,
-            setCurrentCategorie: setCategorie,
+            name: gender,
+            setCurrentGender: hundleCurrentGender,
           }}
         >
-          <CartContext.Provider
+          <CategorieContext.Provider
             value={{
-              articlesInCart: CartArticles,
-              items: itemsInCart,
-              addArticlesCart: hundleCartArticles,
-              addItems: hundleItems,
-              deleteItem: hundleDelete,
-              elements: elementInCart,
+              name: categorie,
+              setCurrentCategorie: setCategorie,
             }}
           >
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <>
-                    <NavBar listCategorie={listCategorie} />
-                    <Header listCategorie={listCategorie} />
-                    <Articles listArticles={listArticles} />
-                    <BotNavBar />
-                  </>
-                }
-              />
-              <Route
-                path="/test"
-                element={
-                  <Test
-                    listCategorie={listCategorie}
-                    listArticles={listArticles}
-                  />
-                }
-              />
-              <Route path="/profile" element={<Profile />} />
-              <Route
-                path="/cart"
-                element={<Cart listArticles={listArticles} />}
-              />
-              <Route
-                path="/article/:id"
-                element={<ArticleDescription listCategorie={listCategorie} />}
-              />
-              <Route
-                path="*"
-                element={
-                  <>
-                    <div>
-                      <Link to="/">Home Page</Link>
-                    </div>
-                  </>
-                }
-              />
-            </Routes>
-          </CartContext.Provider>
-        </CategorieContext.Provider>
-      </GenderContext.Provider>
+            <CartContext.Provider
+              value={{
+                articlesInCart: CartArticles,
+                items: itemsInCart,
+                addArticlesCart: hundleCartArticles,
+                addItems: hundleItems,
+                deleteItem: hundleDelete,
+                elements: elementInCart,
+                hundleModify: hundleModify,
+              }}
+            >
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <NavBar listCategorie={listCategorie} />
+                      <Header listCategorie={listCategorie} />
+                      <Articles listArticles={listArticles} />
+                      <BotNavBar />
+                    </>
+                  }
+                />
+                <Route
+                  path="/test"
+                  element={
+                    <Test
+                      listCategorie={listCategorie}
+                      listArticles={listArticles}
+                    />
+                  }
+                />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route
+                  path="/article/:id"
+                  element={<ArticleDescription listCategorie={listCategorie} />}
+                />
+                <Route path="/auth" element={<Auth />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route
+                  path="*"
+                  element={
+                    <>
+                      <div>
+                        <New>
+                          <div>Test </div>
+                        </New>
+                      </div>
+                    </>
+                  }
+                />
+              </Routes>
+            </CartContext.Provider>
+          </CategorieContext.Provider>
+        </GenderContext.Provider>
+      </UserContext.Provider>
     </div>
   );
 }

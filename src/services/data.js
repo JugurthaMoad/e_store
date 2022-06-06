@@ -1,4 +1,4 @@
-import image from "../images/fond.jpg";
+import image from "../images/pannier1.jpg";
 const genders = ["Femme", "Homme", "Enfant"];
 const articles = [
   {
