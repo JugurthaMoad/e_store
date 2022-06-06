@@ -40,7 +40,7 @@ const Item = ({ article }) => {
           </span>
           <span
             onClick={hundleshowSize}
-            className="p-1 px-3 bg-gray-100 border-2 border-gray-300 rounded-full text-sm"
+            className="cursor-pointer hover:border-black p-1 px-3 bg-gray-100 border-2 border-gray-300 rounded-full text-sm"
           >
             {article.item.taille} v
           </span>
@@ -51,7 +51,7 @@ const Item = ({ article }) => {
           <span>
             <span
               onClick={hundleDelete}
-              className="px-2 py-1 border-2 border-r-0 border-gray-300 rounded-l-full"
+              className="cursor-pointer px-2 py-1 border-2 border-r-0 border-gray-300 rounded-l-full"
             >
               -
             </span>
@@ -60,7 +60,7 @@ const Item = ({ article }) => {
             </span>
             <span
               onClick={hundleAdd}
-              className="px-2 py-1 border-2 border-l-0 border-gray-300 rounded-r-full"
+              className="cursor-pointer px-2 py-1 border-2 border-l-0 border-gray-300 rounded-r-full"
             >
               +
             </span>
@@ -71,12 +71,12 @@ const Item = ({ article }) => {
         className={
           showSize
             ? " bg-white w-screen fixed min-h-3/6 -bottom-1/2 right-0  hidden"
-            : "bg-white w-screen min-h-3/6 fixed bottom-0 right-0 z-[150]"
+            : " w-screen min-h-3/6 fixed bottom-0 right-0 z-[150] md:h-screen md:flex md:justify-center md:items-center"
         }
       >
-        <div className="h-2/3 p-2">
+        <div className="h-2/3 p-2 md:w-3/12 md:border-2 md:border-red-900 md:bg-white md:h-[400px]">
           <span className="w-screen">
-            <CloseIcon click={hundleshowSize} />
+            <CloseIcon className="cursor-pointer" click={hundleshowSize} />
           </span>
           <div>
             <img className="h-40 w-screen" src={article.item.image} />
@@ -96,8 +96,8 @@ const Item = ({ article }) => {
                     <li
                       className={
                         taille === article.item.taille
-                          ? "border-2 border-orange-600 px-4 rounded-2xl"
-                          : "border-2 border-gray-300 px-4 rounded-2xl"
+                          ? "cursor-pointer border-2 border-orange-600 px-4 rounded-2xl"
+                          : "cursor-pointer hover:border-black border-2 border-gray-300 px-4 rounded-2xl"
                       }
                       onClick={() => hundleSize(taille)}
                       key={index}
@@ -111,10 +111,10 @@ const Item = ({ article }) => {
           </div>
         </div>
       </div>
-      <div className={showAlert ? "fixed" : "hidden"}>
+      <div className={showAlert ? "fixed z-[260]" : "hidden"}>
         <div className="w-screen h-screen bg-black text-white fixed bottom-0 left-0 opacity-50 z-[160]"></div>
-        <div className="w-screen h-screen fixed bottom-0 left-0  z-[260] flex justify-center items-center">
-          <div className="w-2/3 bg-white text-black h-24 flex flex-col justify-center items-center">
+        <div className="w-screen h-screen fixed bottom-0 left-0  z-[260] flex justify-center items-center ">
+          <div className="w-2/3 bg-white text-black h-24 flex flex-col z-[260] justify-center items-center md:w-[430px]">
             <span className="p-2">Voulez vous supprimer ?</span>
             <div className="flex gap-2">
               <span
@@ -122,7 +122,7 @@ const Item = ({ article }) => {
                   deleteItem(article.item);
                   setAlert(false);
                 }}
-                className="p-2 bg-black text-white"
+                className="cursor-pointer p-2 bg-black text-white"
               >
                 {" "}
                 Oui{" "}
@@ -131,7 +131,7 @@ const Item = ({ article }) => {
                 onClick={() => {
                   setAlert(false);
                 }}
-                className="p-2 bg-black text-white"
+                className="cursor-pointer p-2 bg-black text-white"
               >
                 {" "}
                 Non{" "}

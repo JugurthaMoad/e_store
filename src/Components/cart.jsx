@@ -17,7 +17,7 @@ const Cart = () => {
   const renderItems = (elements) => {
     if (elements.length === 0) {
       return (
-        <div className="self-center">
+        <div className=" h-[30vh] self-center">
           <img className="w-full h-full" src={emptyCart} />
         </div>
       );
@@ -64,17 +64,17 @@ const Cart = () => {
         </div>
       </div>
       <div className=" md:flex md:flex-col md:justify-center md:items-center bg-gray-200 md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
-        <div className="w-screen flex flex-col justify-center items-center gap-y-4 pb-24 text-black px-4 py-4 md:w-11/12 md:grid md:grid-cols-3 md:gap-1">
+        <div className="w-screen flex flex-col justify-center items-center gap-y-4 pb-24 text-black px-4 py-4 md:w-11/12 md:items-start">
           {renderItems(elements)}
         </div>
         <div
           className={
             total > 0
-              ? "w-screen fixed bottom-0 bg-white flex flex-col md:relative "
+              ? "w-screen fixed bottom-0 bg-white flex flex-col md:relative md:z-[0] md:w-full "
               : "hidden"
           }
         >
-          <span className="w-screen px-2 py-4 text-xl font-bold text-black block md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+          <span className="w-screen px-2 py-4 text-xl font-bold text-black block md:w-full md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
             Total:{total} €
           </span>
 
@@ -82,7 +82,7 @@ const Cart = () => {
             onClick={() => {
               console.log("Total a payer pour : ", total, elements);
             }}
-            className="block w-screen bg-black text-white p-4 text-center text-xl font-bold md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto"
+            className="cursor-pointer block w-screen bg-black text-white p-4 text-center text-xl font-bold md:w-8/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto"
           >
             PAYER {total} €
           </span>

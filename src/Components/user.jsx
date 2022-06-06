@@ -60,7 +60,7 @@ const User = () => {
         </div>
       </div>
 
-      <div className="w-full min-h-24 bg-white text-black p-4 md:bg-gray-200 md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+      <div className="w-full min-h-24 bg-white text-black p-4 md:p-8 md:bg-gray-200 md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
         <span className="block w-full text-xl font-bold">
           Salut, {user.name}
         </span>
