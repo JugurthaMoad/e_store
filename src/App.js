@@ -6,12 +6,13 @@ import Profile from "./Components/profile";
 import ArticleDescription from "./Components/articleDescription";
 import Cart from "./Components/cart";
 import Auth from "./Components/auth";
-import New from "./Components/new";
+import Favorite from "./Components/favorite";
 import React, { Component, useState, useEffect } from "react";
 import { getCategorie, getArticles } from "./services/data";
 import GenderContext from "./context/genderContext";
 import CategorieContext from "./context/CategorieContext";
 import CartContext from "./context/CartContext";
+import FavoritContext from "./context/FavoritContext";
 import UserContext from "./context/UserContext";
 import Articles from "./Components/articles";
 import Login from "./Components/login";
@@ -25,11 +26,12 @@ function App(props) {
   const [listArticles, setArticles] = useState(getArticles(categorie, gender));
   // nombre elements dans la panier
   const [CartArticles, setCartArticles] = useState(0);
+  const [FavoritArticles, setFavoritArticles] = useState(0);
   // les elements dans le panier
   const [itemsInCart, setItems] = useState([]);
+  const [itemsInFavorit, setItemsinFavorit] = useState([]);
   const [user, setUser] = useState({
-    id: 3,
-    name: "jugurtha",
+    id: 5,
   });
   let tab = itemsInCart;
   let articles = [];
@@ -43,7 +45,19 @@ function App(props) {
   const hundleCartArticles = () => {
     setCartArticles(CartArticles + 1);
   };
-
+  const hundleFavorites = (article) => {
+    console.log("article = ", article);
+    let inFav = inFavorite(article);
+    console.log("fav = ", inFav);
+    console.log("items in fav = ", itemsInFavorit);
+    if (inFav >= 0) {
+      console.log("in ");
+      deleteFavorit(article);
+    } else {
+      console.log("out");
+      addFavorit(article);
+    }
+  };
   const fillCart = () => {
     let article = {};
     let o = 0;
@@ -54,7 +68,9 @@ function App(props) {
           o++;
         }
       });
-      tab = tab.filter((el) => el.id !== first.id || el.taille != first.taille);
+      tab = tab.filter(
+        (el) => el.id !== first.id || el.taille !== first.taille
+      );
 
       article.rep = o;
       article.item = first;
@@ -88,12 +104,33 @@ function App(props) {
     });
     fillCart();
   };
+  const addFavorit = (article) => {
+    setFavoritArticles(FavoritArticles + 1);
+    const tab = itemsInFavorit;
+    tab.push(article);
+    setItemsinFavorit(tab);
+    console.log("items in favorit = ", itemsInFavorit);
+  };
+  const deleteFavorit = (article) => {
+    console.log("delete article = ", article);
+    setFavoritArticles(FavoritArticles - 1);
+    let tab = itemsInFavorit;
+    // let index = tab.indexOf(article.id);
 
+    // tab.splice(index, 1);
+    // console.log("delete id = ", index);
+    tab = tab.filter((art) => art.id !== article.id);
+    setItemsinFavorit(tab);
+  };
+  const inFavorite = (article) => {
+    return itemsInFavorit.indexOf(article);
+  };
+  console.log("articles in favorite = ", itemsInFavorit);
   useEffect(() => {
     setArticles(getArticles(categorie, gender));
   }, [categorie, gender]);
   return (
-    <div className="min-h-screen w-screen bg-gray-300 md:bg-white">
+    <div className="w-screen box-content bg-white flex flex-col">
       <UserContext.Provider
         value={{
           user: user,
@@ -123,47 +160,65 @@ function App(props) {
                 hundleModify: hundleModify,
               }}
             >
-              <Routes>
-                <Route
-                  path="/e_store"
-                  element={
-                    <>
-                      <NavBar listCategorie={listCategorie} />
-                      <Header listCategorie={listCategorie} />
-                      <Articles listArticles={listArticles} />
-                      <BotNavBar />
-                    </>
-                  }
-                />
-                <Route
-                  path="/test"
-                  element={
-                    <Test
-                      listCategorie={listCategorie}
-                      listArticles={listArticles}
-                    />
-                  }
-                />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route
-                  path="/article/:id"
-                  element={<ArticleDescription listCategorie={listCategorie} />}
-                />
-                <Route path="/auth" element={<Auth />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route
-                  path="*"
-                  element={
-                    <>
-                      <div>
-                        page introuvable
-                      </div>
-                    </>
-                  }
-                />
-              </Routes>
+              <FavoritContext.Provider
+                value={{
+                  articlesInFav: FavoritArticles,
+                  listImtems: itemsInFavorit,
+                  addFavoriteArticles: hundleFavorites,
+                  isIni: inFavorite,
+                }}
+              >
+                <Routes>
+                  <Route
+                    path="/e_store"
+                    element={
+                      <>
+                        <NavBar listCategorie={listCategorie} />
+                        <Header listCategorie={listCategorie} />
+                        <Articles listArticles={listArticles} />
+                        <BotNavBar />
+                      </>
+                    }
+                  />
+                  <Route
+                    path="/test"
+                    element={
+                      <Test
+                        listCategorie={listCategorie}
+                        listArticles={listArticles}
+                      />
+                    }
+                  />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route
+                    path="/favorite"
+                    element={
+                      <Favorite
+                        listArticles={listArticles}
+                        listCategorie={listCategorie}
+                      />
+                    }
+                  />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route
+                    path="/article/:id"
+                    element={
+                      <ArticleDescription listCategorie={listCategorie} />
+                    }
+                  />
+                  <Route path="/auth" element={<Auth />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route
+                    path="*"
+                    element={
+                      <>
+                        <div>page introuvable</div>
+                      </>
+                    }
+                  />
+                </Routes>
+              </FavoritContext.Provider>
             </CartContext.Provider>
           </CategorieContext.Provider>
         </GenderContext.Provider>
