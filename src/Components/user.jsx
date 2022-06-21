@@ -30,7 +30,7 @@ const User = () => {
             className="md:cursor-pointer hover:text-orange-600"
           />
           <div
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/e_store")}
             className="block text-xl font-semibold uppercase cursor-pointer  md:text-2xl"
           >
             LOGO
