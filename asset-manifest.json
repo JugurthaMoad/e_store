@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/e_store/static/css/main.d74f7b0a.css",
+    "main.js": "/e_store/static/js/main.9577b4f4.js",
+    "static/media/fond.jpg": "/e_store/static/media/fond.c4c1157644154d9b8a14.jpg",
+    "static/media/pannier1.jpg": "/e_store/static/media/pannier1.23d4420d630a8d9c6e4d.jpg",
+    "index.html": "/e_store/index.html",
+    "main.d74f7b0a.css.map": "/e_store/static/css/main.d74f7b0a.css.map",
+    "main.9577b4f4.js.map": "/e_store/static/js/main.9577b4f4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d74f7b0a.css",
+    "static/js/main.9577b4f4.js"
+  ]
+}
