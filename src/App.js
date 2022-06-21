@@ -125,7 +125,7 @@ function App(props) {
             >
               <Routes>
                 <Route
-                  path="/"
+                  path="/e_store""
                   element={
                     <>
                       <NavBar listCategorie={listCategorie} />
@@ -158,9 +158,7 @@ function App(props) {
                   element={
                     <>
                       <div>
-                        <New>
-                          <div>Test </div>
-                        </New>
+                        page introuvable
                       </div>
                     </>
                   }
