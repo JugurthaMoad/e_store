@@ -125,7 +125,7 @@ function App(props) {
             >
               <Routes>
                 <Route
-                  path="/e_store""
+                  path="/"
                   element={
                     <>
                       <NavBar listCategorie={listCategorie} />
