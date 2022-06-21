@@ -40,14 +40,14 @@ const NavBar = ({ listCategorie }) => {
           <div className="flex items-center">
             <BackIcon
               click={hundleBack}
-              className={useMatch("/") ? "hidden" : " relative"}
+              className={useMatch("/e_store") ? "hidden" : " relative"}
             />
             <MobilMenu click={hundleShowMenu} />
           </div>
           <div>
             <span
               onClick={() => {
-                navigate("/");
+                navigate("/e_store");
               }}
               className="block text-xl font-semibold uppercase"
             >
@@ -120,17 +120,17 @@ const NavBar = ({ listCategorie }) => {
               <BackIcon
                 click={hundleBack}
                 className={
-                  useMatch("/")
+                  useMatch("/e_store")
                     ? "hidden"
                     : "cursor-pointer relative hover:text-orange-600"
                 }
               />
-              <div className={!useMatch("/") ? "hidden" : " relative"}>
+              <div className={!useMatch("/e_store") ? "hidden" : " relative"}>
                 <GenderBar />
               </div>
             </div>
             <div
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/e_store")}
               className="cursor-pointer block text-2xl font-semibold uppercase"
             >
               LOGO
