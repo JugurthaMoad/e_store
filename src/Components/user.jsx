@@ -24,7 +24,7 @@ const User = () => {
   return (
     <div className="w-full h-full flex flex-col gap-2">
       <div className="w-screen bg-black ">
-        <div className="w-full h-16 text-white flex justify-between items-center px-4 gap-3 md:px-2 md:gap-2 md:justify-between md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+        <div className="w-full h-16 text-white flex justify-between items-center px-4 gap-3 md:px-2 md:gap-2 md:justify-between md:w-screen lg:w-11/12 lg:mx-auto">
           <BackIcon
             click={hundleBack}
             className="md:cursor-pointer hover:text-orange-600"
@@ -60,12 +60,12 @@ const User = () => {
         </div>
       </div>
 
-      <div className="w-full min-h-24 bg-white text-black p-4 md:p-8 md:bg-gray-200 md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+      <div className="w-full min-h-24 bg-white text-black p-4 border border-gray-800 md:p-8 md:w-8/12 md:mx-auto">
         <span className="block w-full text-xl font-bold">
           Salut, {user.name}
         </span>
       </div>
-      <div className="w-full bg-white flex flex-col p-4 md:bg-gray-200 md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+      <div className="w-full bg-white flex flex-col p-4 border border-gray-800 md:w-8/12 md:mx-auto">
         <span className="block text-xl font-bold">Mes Commandes</span>
         <div className="w-5/6 h-12 m-auto border-2 border-black py-2 flex justify-center items-center gap-4">
           <span>En cours</span>
@@ -74,7 +74,7 @@ const User = () => {
         </div>
       </div>
       <div>
-        <div className="w-full bg-white flex flex-col p-4 md:bg-gray-200 md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+        <div className="w-full bg-white flex flex-col p-4 border border-gray-800 md:w-8/12 md:mx-auto">
           <span className="block text-xl font-bold">Service Client</span>
           <div className="w-5/6 h-12 m-auto border-2 border-black py-2 flex justify-center items-center gap-4">
             <span>Par mail</span>
@@ -83,7 +83,7 @@ const User = () => {
           </div>
         </div>
       </div>
-      <div className="w-full bg-white flex flex-col p-4 md:bg-gray-200 md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+      <div className="w-full bg-white flex flex-col p-4 border border-gray-800 md:w-8/12 md:mx-auto">
         <span className="block text-xl font-bold">Liste d'envie</span>
         <div className="w-5/6 h-12 m-auto border-2 border-black py-2 flex justify-center items-center gap-4">
           <span>Par mail</span>
@@ -100,7 +100,7 @@ const User = () => {
       >
         <div className="w-full h-full bg-gray-300 text-black flex flex-col gap-4 md:bg-transparent">
           <div className="w-screen shadow-md">
-            <div className="w-full bg-white text-black flex  items-center text-xl p-3 gap-4 font-bold md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+            <div className="w-full bg-white text-black flex  items-center text-xl p-3 gap-4 font-bold md:w-11/12 md:mx-auto">
               <span>
                 <BackIcon
                   className="cursor-pointer w-6 h-6"
@@ -111,18 +111,18 @@ const User = () => {
             </div>
           </div>
 
-          <div className="w-full bg-white text-black text-xl p-2 md:bg-gray-200 md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+          <div className="w-full bg-white text-black text-xl p-2 border border-gray-800 md:w-8/12 md:mx-auto">
             <span
               onClick={hundleAccout}
               className="cursor-pointer block py-3 flex justify-between items-center"
             >
               Gestion de compte <ForwardIcon />
             </span>
-            <hr className="border-2 md:border-white" />
+            <hr className="border-2 w-11/12 mx-auto" />
             <span className="cursor-pointer block py-3 flex justify-between items-center">
               Contez-nous <ForwardIcon />
             </span>
-            <hr className="border-2 md:border-white" />
+            <hr className="border-2 w-11/12 mx-auto" />
             <span className="cursor-pointer block py-3 flex justify-between items-center">
               Qui somme-nous ? <ForwardIcon />
             </span>
@@ -138,7 +138,7 @@ const User = () => {
       >
         <div className="w-full h-full bg-gray-300 text-black flex flex-col gap-4 md:bg-transparent">
           <div className="w-screen shadow-md">
-            <div className="w-full bg-white text-black flex  items-center text-xl p-3 gap-4 font-bold md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+            <div className="w-full bg-white text-black flex  items-center text-xl p-3 gap-4 font-bold md:w-11/12 md:mx-auto">
               <span>
                 <BackIcon
                   className="cursor-pointer w-6 h-6"
@@ -148,18 +148,18 @@ const User = () => {
               <span>Gestion de Compte</span>
             </div>
           </div>
-          <div className="w-full bg-white text-black text-xl p-2 md:bg-gray-200 md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+          <div className="w-full bg-white text-black text-xl p-2 border border-gray-800 md:w-8/12 md:mx-auto">
             <span
               onClick={hundleAccout}
               className="cursor-pointer block py-3 flex justify-between items-center"
             >
               Confirmer l'adresse mail <ForwardIcon />
             </span>
-            <hr className="border-2 md:border-white" />
+            <hr className="border-2 w-11/12 mx-auto" />
             <span className="cursor-pointer block py-3 flex justify-between items-center">
               Modifier le mot de passe <ForwardIcon />
             </span>
-            <hr className="border-2 md:border-white" />
+            <hr className="border-2 w-11/12 mx-auto" />
             <span className="cursor-pointer block py-3 flex justify-between items-center">
               Supprimer le compte <ForwardIcon />
             </span>

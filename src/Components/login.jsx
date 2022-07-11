@@ -10,7 +10,7 @@ const Login = () => {
   });
   const navigate = useNavigate();
   const hundClose = () => {
-    navigate("/");
+    navigate("/e_store");
   };
   const [errors, setErros] = useState({
     email: false,
@@ -22,7 +22,7 @@ const Login = () => {
   });
   const hundleLogo = () => {
     console.log("logo");
-    navigate("/");
+    navigate("/e_store");
   };
   const hundleChange = (e) => {
     const { name } = e.currentTarget;
@@ -55,7 +55,7 @@ const Login = () => {
   return (
     <div className="h-screen w-screen bg-white flex flex-col">
       <div className="w-screen shadow-md">
-        <div className="flex w-screen h-16 justify-between items-center p-2 md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+        <div className="flex w-screen h-16 justify-between items-center p-2 md:w-screen lg:w-11/12 lg:mx-auto">
           <span
             onClick={hundleLogo}
             className="block text-2xl font-bold cursor-pointer"

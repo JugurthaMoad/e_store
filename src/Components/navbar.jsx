@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect, useContext } from "react";
 import GenderContext from "../context/genderContext";
 import CategorieContext from "../context/CategorieContext";
 import CartContext from "../context/CartContext";
+import FavoritContext from "../context/FavoritContext";
 import { Link, useNavigate, useMatch } from "react-router-dom";
 import { getCategorie } from "../services/data";
 import {
@@ -19,6 +20,7 @@ const NavBar = ({ listCategorie }) => {
   const currentGender = useContext(GenderContext);
   const currentCategorie = useContext(CategorieContext);
   const cart = useContext(CartContext);
+  const favorite = useContext(FavoritContext);
   const [profileDropMenu, setProfile] = useState(false);
   const hundleShowMenu = () => {
     setShowMenu(!showMenu);
@@ -32,6 +34,9 @@ const NavBar = ({ listCategorie }) => {
   };
   const hundleProfil = () => {
     navigate("/profile");
+  };
+  const hundleFavori = () => {
+    navigate("/favorite");
   };
   return (
     <>
@@ -47,7 +52,7 @@ const NavBar = ({ listCategorie }) => {
           <div>
             <span
               onClick={() => {
-                navigate("/");
+                navigate("/e_store");
               }}
               className="block text-xl font-semibold uppercase"
             >
@@ -55,7 +60,26 @@ const NavBar = ({ listCategorie }) => {
             </span>
           </div>
           <div className="flex justify-end gap-2">
-            <FavoriIncon />
+            <div className="flex justify-center items-center">
+              <FavoriIncon
+                click={hundleFavori}
+                className={
+                  useMatch("/favorite")
+                    ? "text-orange-600 cursor-pointer "
+                    : "cursor-pointer md:hover:text-orange-600"
+                }
+              />
+              <span
+                className={
+                  favorite.articlesInFav > 0
+                    ? "relative flex justify-center items-center bottom-4 block w-5 h-5 rounded-full text-xs bg-red-600"
+                    : "hidden"
+                }
+              >
+                {favorite.articlesInFav}
+              </span>
+            </div>
+
             <div className="flex justify-center items-center">
               <CartIcon click={hundleCart} />
               <span
@@ -77,7 +101,7 @@ const NavBar = ({ listCategorie }) => {
               : "transition duration-300 ease-out w-5/6 h-4/5 absolute top-0 -left-10 flex  -translate-x-full z-[150]"
           }
         >
-          <div className="bg-gray-400 w-full">
+          <div className="bg-gray-300 w-full">
             <GenderBar />
             <ul className="w-full h-full flex flex-col items-center py-4 gap-y-2">
               {listCategorie.map((cat, index) => {
@@ -113,8 +137,8 @@ const NavBar = ({ listCategorie }) => {
               : "transition-opacity w-screen h-screen bg-black opacity-0 bottom-0 fixed  z-[-150]"
           }
         ></div>
-        <div className="hidden md:fixed md:block md:w-screen md:bg-black md:text-white md:h-16">
-          <div className="md:relative md:h-16 md:flex md:justify-between md:items-center md:gap-2 md:px-6 md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+        <div className="hidden md:fixed md:block md:w-full md:bg-black md:text-white md:h-16 box-content">
+          <div className="md:relative md:h-16 md:flex md:justify-between md:items-center md:gap-2 md:px-6 md:w-screen md:mx-auto lg:w-11/12 lg:mx-auto ">
             <div className="">
               {" "}
               <BackIcon
@@ -140,9 +164,25 @@ const NavBar = ({ listCategorie }) => {
                 click={hundleProfil}
                 className="cursor-pointer md:hover:text-orange-600"
               />
-
-              <FavoriIncon className="cursor-pointer md:hover:text-orange-600" />
-
+              <div className="cursor-pointer h-full flex justify-center items-center">
+                <FavoriIncon
+                  click={hundleFavori}
+                  className={
+                    useMatch("/favorite")
+                      ? "text-orange-600 cursor-pointer "
+                      : "cursor-pointer md:hover:text-orange-600"
+                  }
+                />
+                <span
+                  className={
+                    favorite.articlesInFav > 0
+                      ? "relative flex justify-center items-center bottom-4 block w-5 h-5 rounded-full text-xs bg-red-600"
+                      : "hidden"
+                  }
+                >
+                  {favorite.articlesInFav}
+                </span>
+              </div>
               <div className="cursor-pointer h-full flex justify-center items-center">
                 <CartIcon
                   className="md:hover:text-orange-600"

@@ -4,7 +4,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { AlertMessage } from "./alerte";
 import { getArticleById } from "../services/data";
 import CartContext from "../context/CartContext";
-import { CloseIcon, BackIcon, ForwardIcon } from "./icons";
+import FavoritContext from "../context/FavoritContext";
+import { CloseIcon, BackIcon, ForwardIcon, FavoriIncon } from "./icons";
 const ArticleDescription = ({ listCategorie }) => {
   let { id } = useParams();
   let navigate = useNavigate();
@@ -15,6 +16,7 @@ const ArticleDescription = ({ listCategorie }) => {
   const [choose, setChoose] = useState(-1);
   const [showAlert, setAlert] = useState(false);
   let cart = useContext(CartContext);
+  let favorite = useContext(FavoritContext);
   let [finalArticle, setFinalArticle] = useState({});
   const hundleSize = (size, index) => {
     let art = { ...finalArticle };
@@ -42,22 +44,41 @@ const ArticleDescription = ({ listCategorie }) => {
       setSize(false);
     }
   };
-
+  const hundleFavori = (art) => {
+    favorite.addFavoriteArticles(art);
+  };
   return (
-    <div className="bg-gray-300 min-h-screen">
+    <div className="bg-gray-200 min-h-screen flex flex-col">
       <NavBar listCategorie={listCategorie} />
-      <div className="grid grid-cols-1 md:w-11/12 md:pt-[64px] md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+      <div className="grid grid-cols-1 md:w-screen md:mx-auto lg:w-11/12 lg:mx-auto">
         <div className="grid grid-cols-1 gap-2 pb-20 md:pb-2">
           <div>
             <div>
-              <img className="h-96 w-screen md:h-100" src={article.image} />
+              <img
+                className="h-96 w-screen md:h-100"
+                alt="artcl"
+                src={article.image}
+              />
             </div>
             <div className="p-2 bg-white">
               <div className="text-sm text-stone-500 py-2">{article.name}</div>
               <div className="flex justify-between">
                 <span className="text-lg font-bold">{article.prix} €</span>{" "}
-                <span className="cursor-pointer flex" onClick={hundleAvis}>
-                  Avis <ForwardIcon className="w-6 h-6" />
+                <span className="flex flex-col gap-2 items-center">
+                  <span className="cursor-pointer flex " onClick={hundleAvis}>
+                    Avis <ForwardIcon className="w-6 h-6" />
+                  </span>
+                  <span>
+                    <FavoriIncon
+                      className={
+                        favorite.isIni(article) >= 0
+                          ? "cursor-pointer text-orange-600"
+                          : "cursor-pointer"
+                      }
+                      click={() => hundleFavori(article)}
+                    />
+                    {favorite.articlesInFav.length}
+                  </span>
                 </span>
               </div>
               <div>
@@ -107,7 +128,7 @@ const ArticleDescription = ({ listCategorie }) => {
           onClick={() => {
             hundleAdd(article);
           }}
-          className="w-screen cursor-pointer bg-black block text-white flex justify-center items-center h-16 font-bold text-center fixed bottom-0 md:relative md:block md:flex md:justify-center md:items-center md:h-12 md:rounded md:w-7/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto"
+          className="w-screen cursor-pointer bg-black block text-white flex justify-center items-center h-16 font-bold text-center fixed bottom-0 md:relative md:block md:flex md:justify-center md:items-center md:h-12 md:rounded md:w-4/12 md:mx-auto"
         >
           AJOUTER AU PANIER
         </span>
