@@ -8,7 +8,6 @@
   <li>Description of the project </li>
   <li>What i did</li>
   <li>What I learned</li>
-  <li>Remains to be done</li>
   <li>What I'm learning </li>
   <li>Run the App</li>
   </ul>
@@ -28,24 +27,7 @@
   <hr width="50%"/>
   <h3>What I learned : </h3>
   This project allowed me to learn ReactJS Hooks such as "UseContext" to pass Data to Components without Redux, and some cool principles such as " Conditional Rendering" to hide or show elements, "Lifting the state up" to synchronize the adding and removing articles in the shoping cart, also i learned how to combine Components principle and SVG's to create a reusible icons and the use of the spread operator to copy props :sunglasses::sunglasses:. I also learned to use react-router-dom for the navigation, <span>and <img src="https://skills.thijs.gg/icons?i=figma,tailwind&theme=light"/> for the desing part.</span>
-  
- <hr width="50%"/>
- <h3>Remains to be done :sweat_smile: : </h3>
- <ul>
-  <li>
-    Profil page 
-  </li>
-  <li>
-    Finish the shoping cart design 
-  </li>
-  <li>
-    Add the LogIn, LogOut pages
-  </li>
-  <li>
-    Finish the design for medium and larger screen 
-  </li>
-  </ul>
-
+ 
 <hr width="50%"/>
 <h3>What I'm learning : </h3>
 <ul>
