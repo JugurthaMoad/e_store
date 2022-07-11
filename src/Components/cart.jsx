@@ -17,14 +17,17 @@ const Cart = () => {
   const renderItems = (elements) => {
     if (elements.length === 0) {
       return (
-        <div className=" h-[30vh] self-center">
+        <div className=" h-[h-16] self-center">
           <img className="w-full h-full" src={emptyCart} />
         </div>
       );
     } else {
       return elements.map((item, index) => {
         return (
-          <div className="bg-white p-2 h-36 w-full md:w-5/12" key={index}>
+          <div
+            className="bg-white border-2 border-gray-200 rounded p-2 h-36 w-full md:w-8/12 md:mx-auto"
+            key={index}
+          >
             <div className="h-full w-full">
               <Item article={item} />
             </div>
@@ -48,9 +51,9 @@ const Cart = () => {
     hundlePrice();
   });
   return (
-    <div className="bg-gray-300 min-h-screen md:bg-white">
+    <div className="bg-white min-h-screen md:bg-white">
       <div className="w-screen bg-black ">
-        <div className="w-screen h-16 bg-black text-white p-2 grid grid-cols-3 items-center  md:px-2 md:gap-2 md:justify-between md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+        <div className="w-screen h-16 bg-black text-white p-2 grid grid-cols-3 items-center  md:px-2 md:gap-2 md:justify-between md:w-screen md:mx-auto lg:w-11/12 lg:mx-auto">
           <div>
             <BackIcon
               className="cursor-pointer float-left"
@@ -63,7 +66,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
-      <div className=" md:flex md:flex-col md:justify-center md:items-center bg-gray-200 md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
+      <div className=" md:flex md:flex-col md:justify-center md:items-center bg-white md:w-11/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto">
         <div className="w-screen flex flex-col justify-center items-center gap-y-4 pb-24 text-black px-4 py-4 md:w-11/12 md:items-start">
           {renderItems(elements)}
         </div>
@@ -82,7 +85,7 @@ const Cart = () => {
             onClick={() => {
               console.log("Total a payer pour : ", total, elements);
             }}
-            className="cursor-pointer block w-screen bg-black text-white p-4 text-center text-xl font-bold md:w-8/12 md:mx-auto lg:w-8/12 lg:mx-auto 2xl:w-6/12 2xl:mx-auto"
+            className="cursor-pointer block w-screen bg-black text-white p-4 text-center text-xl font-bold md:w-6/12 md:mx-auto"
           >
             PAYER {total} €
           </span>
